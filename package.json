@@ -1,20 +1,68 @@
 {
-  "name": "car-wash-system",
+  "name": "car_wash_app",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "13.5.4"
+    "@headlessui/react": "^1.7.7",
+    "@heroicons/react": "^2.0.13",
+    "@reduxjs/toolkit": "^1.7.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
+    "chart.js": "^3.6.0",
+    "dayjs": "^1.11.7",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "postcss-import": "^12.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-calendar": "^4.0.0",
+    "react-chartjs-2": "^4.0.0",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.41.5",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.0.0-beta.4",
+    "react-scripts": "^4.0.1",
+    "react-toastify": "8.0.0",
+    "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"yarn tailwind:css\" \"yarn start\"",
+    "tailwind:css": "postcss ./src/styles/tailwind.css -o ./src/styles/index.css --watch"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "13.5.4"
+    "@faker-js/faker": "^7.6.0",
+    "autoprefixer": "^10.4.13",
+    "concurrently": "^7.6.0",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.2.4"
   }
 }

@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -93,7 +93,7 @@ const Navbar = ({ current = 'Sales' }) => {
                   <div className='ml-10 flex items-baseline space-x-4'>
                     {navigation.map((item) =>
                       item.isAdmin ? (
-                        (user?.role == 'admin' || (item?.isManager && user?.role == 'manager')) && (
+                        (user?.role === 'admin' || (item?.isManager && user?.role === 'manager')) && (
                           <a
                             key={item.name}
                             href={item.href}
@@ -225,7 +225,7 @@ const Navbar = ({ current = 'Sales' }) => {
             <div className='space-y-1 px-2 pt-2 pb-3 sm:px-3'>
               {navigation.map((item) =>
                 item.isAdmin ? (
-                  (user?.role == 'admin' || (item?.isManager && user?.role == 'manager')) && (
+                  (user?.role === 'admin' || (item?.isManager && user?.role === 'manager')) && (
                     <Disclosure.Button
                       key={item.name}
                       as='a'

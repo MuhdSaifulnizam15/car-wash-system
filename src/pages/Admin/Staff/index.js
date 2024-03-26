@@ -59,23 +59,31 @@ const Staff = () => {
 
   const { user, staff: staff_info } = useAuth();
 
-  useEffect(async () => {
-    console.log('user', user);
+  useEffect(() => {
+    // console.log('user', user);
+    async function fetchData() {
+      dispatch(getAllBranch({ limit: 50 }))
+    }
+    
     if (user && user?.role !== 'admin') {
       // disabled branch selection (allow only on the respective branch)
       setIsSelectedBranchDisabled(true);
       setSelectedBranch(staff_info?.branch_id);
-    } else await dispatch(getAllBranch({ limit: 50 }));
-  }, [user]);
+    } else fetchData();
 
-  useEffect(async () => {
-    await dispatch(
-      getAllStaff({
-        page: currentPage,
-        branch: user?.role !== 'admin' ? staff_info?.branch_id?.id : '',
-      })
-    );
-  }, [staff_info]);
+  }, [dispatch, staff_info?.branch_id, user]);
+
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        getAllStaff({
+          page: currentPage,
+          branch: user?.role !== 'admin' ? staff_info?.branch_id?.id : '',
+        })
+      );
+    }
+    fetchData();
+  }, [currentPage, dispatch, staff_info, user?.role]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -85,16 +93,6 @@ const Staff = () => {
       resetForm();
     }
   }, [isLoading]);
-
-  useEffect(async () => {
-    console.log('currentPage', currentPage);
-    await dispatch(
-      getAllStaff({
-        page: currentPage,
-        branch: user?.role !== 'admin' ? staff_info?.branch_id?.id : '',
-      })
-    );
-  }, [currentPage]);
 
   const handleEventChange = (event) => {
     console.log('event', event.target.name);

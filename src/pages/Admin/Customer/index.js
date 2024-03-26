@@ -40,13 +40,16 @@ const Customer = () => {
   } = useSelector((state) => state.customer);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(
-      getAllCustomer({
-        page: currentPage,
-      })
-    );
-  }, [dispatch]);
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        getAllCustomer({
+          page: currentPage,
+        })
+      );
+    }
+    fetchData();
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -57,15 +60,6 @@ const Customer = () => {
       resetForm();
     }
   }, [isLoading]);
-
-  useEffect(async () => {
-    console.log('currentPage', currentPage);
-    await dispatch(
-      getAllCustomer({
-        page: currentPage,
-      })
-    );
-  }, [currentPage]);
 
   const handleEventChange = (event) => {
     console.log('event', event.target.name);

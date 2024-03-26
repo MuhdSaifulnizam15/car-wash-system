@@ -38,17 +38,10 @@ const ChangePassword = () => {
       case 'confirm_password':
         setConfirmPassword(event.target.value);
         break;
-    }
-  };
 
-  const resetForm = () => {
-    // console.log('resetForm');
-    setOldPassword();
-    setNewPassword();
-    setConfirmPassword();
-    setIsOldPasswordVisible(false);
-    setIsNewPasswordVisible(false);
-    setIsConfirmPasswordVisible(false);
+      default:
+        break;
+    }
   };
 
   const submitForm = async (event) => {
@@ -206,6 +199,9 @@ const ChangePassword = () => {
               theme: 'light',
             });
             passValid = false;
+            break;
+
+          default:
             break;
         }
 

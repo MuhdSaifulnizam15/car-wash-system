@@ -43,17 +43,23 @@ const Services = () => {
   const { categories } = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(getAllCategories({ limit: 50 }));
-  }, []);
-
-  useEffect(async () => {
-    await dispatch(
-      getAllServices({
-        page: currentPage,
-      })
-    );
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(getAllCategories({ limit: 50 }));
+    }
+    fetchData();
   }, [dispatch]);
+
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        getAllServices({
+          page: currentPage,
+        })
+      );
+    }
+    fetchData();
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -63,15 +69,6 @@ const Services = () => {
       resetForm();
     }
   }, [isLoading]);
-
-  useEffect(async () => {
-    console.log('currentPage', currentPage);
-    await dispatch(
-      getAllServices({
-        page: currentPage,
-      })
-    );
-  }, [currentPage]);
 
   const handleEventChange = (event) => {
     console.log('event', event.target.name);

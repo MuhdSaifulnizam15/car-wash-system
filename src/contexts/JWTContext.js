@@ -60,7 +60,7 @@ const handlers = {
     };
   },
   FORGOT_PASSWORD: (state, action) => {
-    const { user } = action.payload;
+    // const { user } = action.payload;
 
     return {
       ...state,
@@ -70,7 +70,7 @@ const handlers = {
     };
   },
   RESET_PASSWORD: (state, action) => {
-    const { user } = action.payload;
+    // const { user } = action.payload;
 
     return {
       ...state,
@@ -206,25 +206,25 @@ function AuthProvider({ children }) {
     }
   };
 
-  const refresh = async (refreshToken) => {
-    const response = await axios.post('/auth/refresh-tokens', {
-      refreshToken,
-    });
-    console.log('response refreshToken:', response);
+  // const refresh = async (refreshToken) => {
+  //   const response = await axios.post('/auth/refresh-tokens', {
+  //     refreshToken,
+  //   });
+  //   console.log('response refreshToken:', response);
 
-    const userProfileResponse = await axios.get('/auth/profile');
-    console.log('response getuserProfile:', userProfileResponse);
+  //   const userProfileResponse = await axios.get('/auth/profile');
+  //   console.log('response getuserProfile:', userProfileResponse);
 
-    const { user } = userProfileResponse;
+  //   const { user } = userProfileResponse;
 
-    setSession(response);
-    dispatch({
-      type: 'REFRESH',
-      payload: {
-        user,
-      },
-    });
-  };
+  //   setSession(response);
+  //   dispatch({
+  //     type: 'REFRESH',
+  //     payload: {
+  //       user,
+  //     },
+  //   });
+  // };
 
   const registerUser = async ({ email, password, first_name, last_name }) => {
     const response = await axios.post('/auth/register', {

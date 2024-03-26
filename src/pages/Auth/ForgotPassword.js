@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import useAuth from 'hooks/useAuth';
 import { PATH_AUTH } from 'router/routes';
 
 import { forgotPassword } from 'redux/slices/user';

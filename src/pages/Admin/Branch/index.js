@@ -41,13 +41,16 @@ const Branch = () => {
   } = useSelector((state) => state.branch);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(
-      getAllBranch({
-        page: currentPage,
-      })
-    );
-  }, [dispatch]);
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        getAllBranch({
+          page: currentPage,
+        })
+      );
+    }
+    fetchData();
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -57,15 +60,6 @@ const Branch = () => {
       resetForm();
     }
   }, [isLoading]);
-
-  useEffect(async () => {
-    console.log('currentPage', currentPage);
-    await dispatch(
-      getAllBranch({
-        page: currentPage,
-      })
-    );
-  }, [currentPage]);
 
   const handleEventChange = (event) => {
     console.log('event', event.target.name);

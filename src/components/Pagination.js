@@ -1,5 +1,3 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-
 const Pagination = ({
   total = 0,
   current = 0,
@@ -20,11 +18,6 @@ const Pagination = ({
 
   const onPrevious = () => {
     if (current - 1 > 0) onPageChange(current - 1);
-  };
-
-  const lastPagingRecord = () => {
-    if (total - pagingCounter >= 10) return pagingCounter + 9;
-    else return pagingCounter + (total - pagingCounter);
   };
 
   return (

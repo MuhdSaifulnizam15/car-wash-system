@@ -5,7 +5,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/20/solid';
 
-import useAuth from 'hooks/useAuth';
 import { PATH_AUTH } from 'router/routes';
 
 import { resetPassword } from 'redux/slices/user';
@@ -23,13 +22,18 @@ const ResetPassword = () => {
   const { register, handleSubmit, resetField } = useForm();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(async () => {
-    // check for valid reset tokens
-    console.log('token', searchParams.get('token'));
-    const validToken = await verifyResetToken(searchParams.get('token'));
-    console.log('validToken', validToken);
-    // if token invalid, redirect to login
-    if (!validToken) navigate(PATH_AUTH.login);
+  useEffect(() => {
+    async function fetchData() {
+      // ...
+      // check for valid reset tokens
+      console.log('token', searchParams.get('token'));
+      const validToken = await verifyResetToken(searchParams.get('token'));
+      console.log('validToken', validToken);
+      // if token invalid, redirect to login
+      if (!validToken) navigate(PATH_AUTH.login);
+    }
+
+    fetchData();
   }, []);
 
   const submitForm = async (data) => {

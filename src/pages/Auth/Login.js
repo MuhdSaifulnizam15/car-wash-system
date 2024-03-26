@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import useAuth from 'hooks/useAuth';
-import Spinner from 'components/Spinner';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
   const { register, handleSubmit, resetField } = useForm();
-  const navigate = useNavigate();
   const { login } = useAuth();
 
   useEffect(() => {

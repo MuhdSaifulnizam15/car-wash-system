@@ -1,11 +1,8 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { PATH_PAGE, PATH_AUTH } from "router/routes";
 
 const Header = ({ title = "Dashboard", showHistoryBtn = false, showChangePasswordBtn = false }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (

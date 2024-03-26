@@ -35,13 +35,16 @@ const Category = () => {
   } = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(
-      getAllCategories({
-        page: currentPage,
-      })
-    );
-  }, [dispatch]);
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        getAllCategories({
+          page: currentPage,
+        })
+      );
+    }
+    fetchData();
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -51,15 +54,6 @@ const Category = () => {
       resetForm();
     }
   }, [isLoading]);
-
-  useEffect(async () => {
-    console.log('currentPage', currentPage);
-    await dispatch(
-      getAllCategories({
-        page: currentPage,
-      })
-    );
-  }, [currentPage]);
 
   const handleEventChange = (event) => {
     console.log('event', event.target.name);

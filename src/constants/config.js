@@ -16,13 +16,13 @@ const configuration = {
 
 const config = configuration[mode];
 
-const devMode = (mode != 'prod') ? true :  false;
+const devMode = (mode !== 'prod') ? true :  false;
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 
 const CACHE_REVALIDATION = 60 // 1 minute
 
-export default {
+export {
     config,
     devMode,
     IS_PROD,

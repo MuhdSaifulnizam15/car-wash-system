@@ -58,6 +58,9 @@ const verifyResetToken = (token) => {
           theme: 'light',
         });
         break;
+
+      default:
+        break;
     }
     return false;
   }

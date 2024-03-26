@@ -1,4 +1,4 @@
-import { map, filter } from 'lodash';
+import { filter } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 

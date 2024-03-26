@@ -1,5 +1,9 @@
 import { Suspense, lazy } from 'react';
-import { Navigate, useRoutes, useLocation } from 'react-router-dom';
+import { 
+  Navigate,
+  useRoutes,
+  // useLocation
+} from 'react-router-dom';
 
 import GuestGuard from 'guards/GuestGuard';
 import AuthGuard from 'guards/AuthGuard';
@@ -11,8 +15,8 @@ import { PATH_PAGE } from 'router/routes';
 
 const Loadable = (Component) => (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { pathname } = useLocation();
-  const isDashboard = pathname.includes('/admin');
+  // const { pathname } = useLocation();
+  // const isDashboard = pathname.includes('/admin');
 
   return (
     <Suspense
@@ -210,8 +214,8 @@ const Sales = Loadable(lazy(() => import('pages/Sales')));
 const Transaction = Loadable(lazy(() => import('pages/Transaction')));
 
 // Admin
-const Dashboard = Loadable(lazy(() => import('pages/Admin/Dashboard')));
-const Users = Loadable(lazy(() => import('pages/Admin/User')));
+// const Dashboard = Loadable(lazy(() => import('pages/Admin/Dashboard')));
+// const Users = Loadable(lazy(() => import('pages/Admin/User')));
 const Categories = Loadable(lazy(() => import('pages/Admin/Category')));
 const Services = Loadable(lazy(() => import('pages/Admin/Service')));
 const Branch = Loadable(lazy(() => import('pages/Admin/Branch')));

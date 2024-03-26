@@ -1,8 +1,7 @@
+/* eslint-disable no-use-before-define */
 import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/react/20/solid';
-
-import axios from 'utils/axios';
 
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
@@ -17,7 +16,7 @@ import useAuth from 'hooks/useAuth';
 import { useDispatch, useSelector } from 'redux/store';
 
 import { getAllBranch } from 'redux/slices/branch';
-import { getAllStaff, getStaffById } from 'redux/slices/staff';
+import { getAllStaff } from 'redux/slices/staff';
 import { getAllServices } from 'redux/slices/services';
 import { getCustomerByPhoneNo } from 'redux/slices/customer';
 import { addSales } from 'redux/slices/sales';
@@ -33,11 +32,11 @@ const Sales = () => {
   const [isSelectedStaffDisabled, setIsSelectedStaffDisabled] = useState(true);
 
   const [total, setTotal] = useState(0);
-  const [subTotal, setSubTotal] = useState(0);
+  // const [subTotal, setSubTotal] = useState(0);
   const [rewardedPoint, setRewardedPoint] = useState(0);
   const [redeemedPoint, setRedeemedPoint] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  // const [discount, setDiscount] = useState(0);
   const [showRedeemPointField, setShowRedeemPointField] = useState(false);
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNum] = useState();
@@ -53,7 +52,7 @@ const Sales = () => {
 
   useEffect(() => {
     resetForm();
-  }, []);
+  }, [resetForm]);
 
   useEffect(() => {
     console.log('user', user);
@@ -63,19 +62,24 @@ const Sales = () => {
     }
   }, [user]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      dispatch(
+        getAllStaff({ 
+          limit: 50, 
+          // branch: staff_info?.branch_id?.id 
+        })
+      );
+      // ...
+    }
+    
     if (staff_info) {
-      console.log('staff info', staff_info);
       if (user?.role === 'staff') setSelectedStaff(staff_info);
       setSelectedBranch(staff_info?.branch_id);
     }
-    await dispatch(
-      getAllStaff({ 
-        limit: 50, 
-        // branch: staff_info?.branch_id?.id 
-      })
-    );
-  }, [staff_info]);
+    fetchData();
+  }, [dispatch, staff_info, user?.role]);
 
   useEffect(async () => {
     // if (
@@ -133,13 +137,16 @@ const Sales = () => {
     }
   }, [customerPhoneNumber]);
 
-  useEffect(async () => {
-    await dispatch(getAllBranch({ limit: 50 }));
-    await dispatch(getAllServices({ limit: 50 }));
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(getAllBranch({ limit: 50 }));
+      dispatch(getAllServices({ limit: 50 }));
+    }
+    fetchData();
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('customer', customer);
+    // console.log('customer', customer);
     if (customer) {
       setTotalPoints(customer?.total_membership_point);
       setCustomerName(customer?.name);

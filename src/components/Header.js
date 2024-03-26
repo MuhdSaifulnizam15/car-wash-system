@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { PATH_PAGE } from "router/routes";
+import { PATH_PAGE, PATH_AUTH } from "router/routes";
 
-const Header = ({ title = "Dashboard", showHistoryBtn = false }) => {
+const Header = ({ title = "Dashboard", showHistoryBtn = false, showChangePasswordBtn = false }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,6 +22,17 @@ const Header = ({ title = "Dashboard", showHistoryBtn = false }) => {
               className="justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-xs font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               History
+            </button>
+          </div>
+        ) : null}
+        {showChangePasswordBtn ? (
+          <div className="mr-2">
+            <button
+              type="button"
+              onClick={() => navigate(PATH_AUTH.changePassword)}
+              className="justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-xs font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Change Password
             </button>
           </div>
         ) : null}

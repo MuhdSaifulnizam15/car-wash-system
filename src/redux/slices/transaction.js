@@ -51,11 +51,13 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getTotalSalesChart(type) {
+export function getTotalSalesChart({ type = 'daily', branch = '' }) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(`/sales/chart/${type}`);
+      let url = `/sales/chart/${type}`;
+      if (branch && branch !== 'all') url += `?branch_id=${branch}`;
+      const response = await axios.get(url);
       console.log("response", response.data);
       dispatch(slice.actions.getTotalSalesSuccess(response.data.chart));
     } catch (error) {
@@ -64,11 +66,16 @@ export function getTotalSalesChart(type) {
   };
 }
 
-export function getTotalSalesByServiceChart({ startDate, endDate }) {
+export function getTotalSalesByServiceChart({ startDate, endDate, branch = '' }) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(`/services/chart/data?startDate=${dayjs(startDate).format('YYYY-MM-DD')}&endDate=${dayjs(endDate).format('YYYY-MM-DD')}`);
+      let url = `/services/chart/data?`;
+      if (startDate) url += `startDate=${dayjs(startDate).format('YYYY-MM-DD')}`;
+      if (endDate) url += `&endDate=${dayjs(endDate).format('YYYY-MM-DD')}`;
+      if (branch && branch !== 'all') url += `&branch_id=${branch}`;
+
+      const response = await axios.get(url);
       console.log("response", response.data);
       dispatch(slice.actions.getTotalSalesByServiceSuccess(response.data.chart));
     } catch (error) {

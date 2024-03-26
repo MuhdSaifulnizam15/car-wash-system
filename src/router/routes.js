@@ -15,7 +15,8 @@ export const PATH_AUTH = {
     register: path(ROOTS_AUTH, '/register'),
     resetPassword: path(ROOTS_AUTH, '/reset-password'),
     forgotPassword: path(ROOTS_AUTH, '/forgot-password'),
-    verify: path(ROOTS_AUTH, '/verify')
+    verify: path(ROOTS_AUTH, '/verify'),
+    changePassword: path(ROOTS_AUTH, '/change-password'),
 };
 
 export const PATH_PAGE = {
@@ -31,6 +32,7 @@ export const PATH_PAGE = {
     sales: '/sales',
     transaction: '/transactions',
     history: '/history',
+    profile: '/profile'
 };
 
 export const PATH_ADMIN = {

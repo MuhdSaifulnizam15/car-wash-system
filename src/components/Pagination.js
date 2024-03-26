@@ -32,13 +32,15 @@ const Pagination = ({
       <div className="flex flex-1 justify-between">
         <li
           onClick={onPrevious}
-          className="relative inline-flex items-center rounded-md border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-700 hover:bg-gray-50"
+          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+          style={{ visibility: hasPreviousPage ? 'visible' : 'hidden'}}
         >
           Previous
         </li>
         <li
           onClick={onNext}
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+          style={{ visibility: hasNextPage ? 'visible' : 'hidden'}}
         >
           Next
         </li>

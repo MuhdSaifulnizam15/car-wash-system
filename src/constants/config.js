@@ -10,7 +10,7 @@ const configuration = {
         apiUrl: 'http://localhost:3001/api/v1/', // dev env using local endpoint
     },
     prod: {
-        apiUrl: 'https://api.carwashshop.com/api/v1/',
+        apiUrl: 'https://api.rolexbarbershop.com/api/v1/',
     }
 };
 

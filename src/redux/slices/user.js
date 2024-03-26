@@ -1,7 +1,9 @@
-import { map, filter } from "lodash";
-import { createSlice } from "@reduxjs/toolkit";
+import { map, filter } from 'lodash';
+import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
 // utils
-import axios from "utils/axios";
+import axios from 'utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +16,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     // START LOADING
@@ -54,6 +56,11 @@ const slice = createSlice({
       state.isLoading = false;
       state.userList = action.payload;
     },
+
+    // CHANGE PASSWORD SUCCESS
+    changePasswordSuccess(state, action) {
+      state.isLoading = false;
+    },
   },
 });
 
@@ -69,7 +76,7 @@ export function getProfile() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get("/auth/profile");
+      const response = await axios.get('/auth/profile');
       dispatch(slice.actions.getProfileSuccess(response.data.profile));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -83,8 +90,8 @@ export function getUserList() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get("/users");
-      console.log("getUserList response:", response);
+      const response = await axios.get('/users');
+      console.log('getUserList response:', response);
       dispatch(slice.actions.getUserListSuccess(response.data.result.docs));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -98,10 +105,112 @@ export function getUsers() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get("/api/user/all");
+      const response = await axios.get('/api/user/all');
       dispatch(slice.actions.getUsersSuccess(response.data.users));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+// ----------------------------------------------------------------------
+
+export function changePassword(data) {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await axios.post('/auth/change-password', data);
+      console.log('response', response.data);
+      dispatch(slice.actions.changePasswordSuccess());
+
+      toast.success(response.data.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch(slice.actions.hasError(error));
+      toast.error(error.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
+  };
+}
+
+export function resetPassword(data) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('/auth/reset-password', data);
+      console.log('response', response.data);
+
+      toast.success(response.data.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
+  };
+}
+
+export function forgotPassword(data) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('/auth/forgot-password', data);
+      console.log('response', response.data);
+
+      toast.success(response.data.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
 }

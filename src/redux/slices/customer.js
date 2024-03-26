@@ -1,9 +1,9 @@
-import { map, filter } from "lodash";
-import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { map, filter } from 'lodash';
+import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 // utils
-import axios from "utils/axios";
+import axios from 'utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -12,10 +12,19 @@ const initialState = {
   error: false,
   customers: [],
   customer: null,
+  currPage: 0,
+  pagingCounter: 0,
+  totalPages: 0,
+  totalDocs: 0,
+  limit: 10,
+  hasPrevPage: false,
+  hasNextPage: true,
+  prevPage: null,
+  nextPage: null,
 };
 
 const slice = createSlice({
-  name: "customer",
+  name: 'customer',
   initialState,
   reducers: {
     // START LOADING
@@ -33,6 +42,14 @@ const slice = createSlice({
     getAllCustomerSuccess(state, action) {
       state.isLoading = false;
       state.customers = action.payload;
+      state.currPage = action.payload?.page;
+      state.totalDocs = action.payload?.totalDocs;
+      state.pagingCounter = action.payload?.pagingCounter;
+      state.hasPrevPage = action.payload?.hasPrevPage;
+      state.hasNextPage = action.payload?.hasNextPage;
+      state.prevPage = action.payload?.prevPage;
+      state.nextPage = action.payload?.nextPage;
+      state.totalPages = action.payload?.totalPages;
     },
 
     // GET CUSTOMER
@@ -71,12 +88,12 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getAllCustomer() {
+export function getAllCustomer({ page = 1, limit = 10 }) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get("/customer");
-      console.log("response", response.data);
+      const response = await axios.get(`/customer?page=${page}&limit=${limit}`);
+      console.log('response', response.data);
       dispatch(slice.actions.getAllCustomerSuccess(response.data.result));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -89,11 +106,11 @@ export function getCustomerByPhoneNo(phone_no) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get(`/customer/check/phone/${phone_no}`);
-      console.log("response", response.data);
+      console.log('response', response.data);
       dispatch(slice.actions.getCustomerSuccess(response.data.customer));
       return response.customer;
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error);
       dispatch(slice.actions.getCustomerFailed());
       dispatch(slice.actions.hasError(error));
     }
@@ -104,19 +121,19 @@ export function addCustomer(data) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post("/customer", data);
-      console.log("response", response.data);
+      const response = await axios.post('/customer', data);
+      console.log('response', response.data);
       dispatch(slice.actions.addCustomerSuccess(response.data.customer));
 
-      toast.success("Customer successfully added", {
-        position: "top-right",
+      toast.success('Customer successfully added', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
     } catch (error) {
       console.log(error);
@@ -130,18 +147,18 @@ export function deleteCustomer(id) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post(`/customer/delete/${id}`);
-      console.log("response", response.data);
+      console.log('response', response.data);
       dispatch(slice.actions.deleteCustomerSuccess(response.data));
 
       toast.success(response.data.message, {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -154,18 +171,18 @@ export function updateCustomer(id, data) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post(`/customer/update/${id}`, data);
-      console.log("response", response.data);
+      console.log('response', response.data);
       dispatch(slice.actions.updateCustomerSuccess(response.data));
 
-      toast.success("Customer successfully updated", {
-        position: "top-right",
+      toast.success('Customer successfully updated', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
     } catch (error) {
       dispatch(slice.actions.hasError(error));

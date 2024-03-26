@@ -11,6 +11,15 @@ const initialState = {
   isLoading: false,
   error: false,
   branch: [],
+  currPage: 0,
+  pagingCounter: 0,
+  totalPages: 0,
+  totalDocs: 0,
+  limit: 10,
+  hasPrevPage: false,
+  hasNextPage: true,
+  prevPage: null,
+  nextPage: null
 };
 
 const slice = createSlice({
@@ -32,6 +41,14 @@ const slice = createSlice({
     getBranchSuccess(state, action) {
       state.isLoading = false;
       state.branch = action.payload;
+      state.currPage = action.payload?.page;
+      state.totalDocs = action.payload?.totalDocs;
+      state.pagingCounter = action.payload?.pagingCounter;
+      state.hasPrevPage = action.payload?.hasPrevPage;
+      state.hasNextPage = action.payload?.hasNextPage;
+      state.prevPage = action.payload?.prevPage;
+      state.nextPage = action.payload?.nextPage;
+      state.totalPages = action.payload?.totalPages;
     },
 
     // ADD BRANCH
@@ -58,11 +75,11 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getAllBranch() {
+export function getAllBranch({ page = 1, limit = 10 }) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get("/branches");
+      const response = await axios.get(`/branches?page=${page}&limit=${limit}`);
       console.log("response", response.data);
       dispatch(slice.actions.getBranchSuccess(response.data.result));
     } catch (error) {

@@ -228,7 +228,7 @@ const History = () => {
                       name='customer_name'
                       id='customer_name'
                       disabled={viewMode}
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Customer Name'
                       onChange={handleEventChange}
                       value={customerName}
@@ -247,7 +247,7 @@ const History = () => {
                       name='date'
                       id='date'
                       disabled={viewMode}
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Date'
                       onChange={handleEventChange}
                       value={dayjs(salesDate).format('DD-MM-YYYY hh:mm A')}
@@ -263,7 +263,7 @@ const History = () => {
                       name='branch_name'
                       id='branch_name'
                       disabled={viewMode}
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Branch Name'
                       onChange={handleEventChange}
                       value={branchName}
@@ -279,7 +279,7 @@ const History = () => {
                       name='barber_name'
                       id='barber_name'
                       disabled={viewMode}
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Barber Name'
                       onChange={handleEventChange}
                       value={barberName}
@@ -357,7 +357,7 @@ const History = () => {
                       name='total'
                       id='total'
                       disabled={viewMode}
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Total'
                       onChange={handleEventChange}
                       value={total}
@@ -422,7 +422,7 @@ const History = () => {
                           Delete
                         </button>
                         <button
-                          className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2'
+                          className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-teal-600 focus:ring-2'
                           onClick={() => {
                             setShowDeleteModal(false);
                             setSelected(null);
@@ -574,7 +574,7 @@ const History = () => {
                           Branch
                         </Listbox.Label>
                         <div className='relative mt-1'>
-                          <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                          <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                             <span className='flex items-center'>
                               <span
                                 className='ml-3 block truncate text-gray-700'
@@ -614,7 +614,7 @@ const History = () => {
                                 className={({ active }) =>
                                   classNames(
                                     active
-                                      ? 'text-white bg-indigo-600'
+                                      ? 'text-white bg-teal-600'
                                       : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-3 pr-9'
                                   )
@@ -641,7 +641,7 @@ const History = () => {
                                         className={classNames(
                                           active
                                             ? 'text-white'
-                                            : 'text-indigo-600',
+                                            : 'text-teal-600',
                                           'absolute inset-y-0 right-0 flex items-center pr-4'
                                         )}
                                       >
@@ -661,7 +661,7 @@ const History = () => {
                                     className={({ active }) =>
                                       classNames(
                                         active
-                                          ? 'text-white bg-indigo-600'
+                                          ? 'text-white bg-teal-600'
                                           : 'text-gray-900',
                                         'relative cursor-default select-none py-2 pl-3 pr-9'
                                       )
@@ -688,7 +688,7 @@ const History = () => {
                                             className={classNames(
                                               active
                                                 ? 'text-white'
-                                                : 'text-indigo-600',
+                                                : 'text-teal-600',
                                               'absolute inset-y-0 right-0 flex items-center pr-4'
                                             )}
                                           >
@@ -722,7 +722,7 @@ const History = () => {
                       type='text'
                       name='customer_phone_no'
                       id='customer_phone_no'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Customer Phone Number'
                       // onChange={handleEventChange}
                       value={
@@ -745,7 +745,7 @@ const History = () => {
                       type='text'
                       name='customer_phone_no'
                       id='customer_phone_no'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Customer Phone Number'
                       // onChange={handleEventChange}
                       value={
@@ -834,7 +834,7 @@ const History = () => {
 
                             {/* <button
                                   type="button"
-                                  className="w-7 h-7 hover:text-blue-300 mx-2"
+                                  className="w-7 h-7 hover:text-teal-300 mx-2"
                                   onClick={() => {
                                     setShowModal(true);
                                     setSelected(item);

@@ -432,7 +432,7 @@ const Transaction = () => {
                           Branch
                         </Listbox.Label>
                         <div className='relative mt-1'>
-                          <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                          <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                             <span className='flex items-center'>
                               <span
                                 className='ml-3 block truncate text-gray-700'
@@ -472,7 +472,7 @@ const Transaction = () => {
                                 className={({ active }) =>
                                   classNames(
                                     active
-                                      ? 'text-white bg-indigo-600'
+                                      ? 'text-white bg-teal-600'
                                       : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-3 pr-9'
                                   )
@@ -499,7 +499,7 @@ const Transaction = () => {
                                         className={classNames(
                                           active
                                             ? 'text-white'
-                                            : 'text-indigo-600',
+                                            : 'text-teal-600',
                                           'absolute inset-y-0 right-0 flex items-center pr-4'
                                         )}
                                       >
@@ -519,7 +519,7 @@ const Transaction = () => {
                                     className={({ active }) =>
                                       classNames(
                                         active
-                                          ? 'text-white bg-indigo-600'
+                                          ? 'text-white bg-teal-600'
                                           : 'text-gray-900',
                                         'relative cursor-default select-none py-2 pl-3 pr-9'
                                       )
@@ -546,7 +546,7 @@ const Transaction = () => {
                                             className={classNames(
                                               active
                                                 ? 'text-white'
-                                                : 'text-indigo-600',
+                                                : 'text-teal-600',
                                               'absolute inset-y-0 right-0 flex items-center pr-4'
                                             )}
                                           >
@@ -578,7 +578,7 @@ const Transaction = () => {
                               Sort By
                             </Listbox.Label>
                             <div className='relative mt-1'>
-                              <Listbox.Button className='relative w-1/6 min-w-fit cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                              <Listbox.Button className='relative w-1/6 min-w-fit cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                                 <span className='flex items-center'>
                                   <span
                                     className='ml-3 capitalize block truncate text-gray-700'
@@ -616,7 +616,7 @@ const Transaction = () => {
                                         className={({ active }) =>
                                           classNames(
                                             active
-                                              ? 'text-white bg-indigo-600'
+                                              ? 'text-white bg-teal-600'
                                               : 'text-gray-900',
                                             'capitalize relative cursor-default select-none py-2 pl-3 pr-9'
                                           )
@@ -643,7 +643,7 @@ const Transaction = () => {
                                                 className={classNames(
                                                   active
                                                     ? 'text-white'
-                                                    : 'text-indigo-600',
+                                                    : 'text-teal-600',
                                                   'absolute inset-y-0 right-0 flex items-center pr-4'
                                                 )}
                                               >
@@ -686,7 +686,7 @@ const Transaction = () => {
                       type='text'
                       name='customer_phone_no'
                       id='customer_phone_no'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Customer Phone Number'
                       // onChange={handleEventChange}
                       value={
@@ -709,7 +709,7 @@ const Transaction = () => {
                       type='text'
                       name='customer_phone_no'
                       id='customer_phone_no'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter Customer Phone Number'
                       // onChange={handleEventChange}
                       value={
@@ -723,7 +723,7 @@ const Transaction = () => {
 
                   <div className='flex justify-end sm:justify-start'>
                     <button
-                      className='my-3 bg-blue-500 px-4 py-2 rounded-md text-md text-white'
+                      className='my-3 bg-teal-500 px-4 py-2 rounded-md text-md text-white'
                       onClick={() => generateTotalSalesChart(true)}
                     >
                       Filter
@@ -806,7 +806,7 @@ const Transaction = () => {
                             Select Year
                           </Listbox.Label>
                           <div className='relative mt-1'>
-                            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                               <span className='flex items-center'>
                                 <span
                                   className='ml-3 block truncate text-gray-700'
@@ -844,7 +844,7 @@ const Transaction = () => {
                                       className={({ active }) =>
                                         classNames(
                                           active
-                                            ? 'text-white bg-indigo-600'
+                                            ? 'text-white bg-teal-600'
                                             : 'text-gray-900',
                                           'relative cursor-default select-none py-2 pl-3 pr-9'
                                         )
@@ -871,7 +871,7 @@ const Transaction = () => {
                                               className={classNames(
                                                 active
                                                   ? 'text-white'
-                                                  : 'text-indigo-600',
+                                                  : 'text-teal-600',
                                                 'absolute inset-y-0 right-0 flex items-center pr-4'
                                               )}
                                             >
@@ -905,7 +905,7 @@ const Transaction = () => {
                             Select Month
                           </Listbox.Label>
                           <div className='relative mt-1'>
-                            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                               <span className='flex items-center'>
                                 <span
                                   className='ml-3 block truncate text-gray-700'
@@ -943,7 +943,7 @@ const Transaction = () => {
                                       className={({ active }) =>
                                         classNames(
                                           active
-                                            ? 'text-white bg-indigo-600'
+                                            ? 'text-white bg-teal-600'
                                             : 'text-gray-900',
                                           'relative cursor-default select-none py-2 pl-3 pr-9'
                                         )
@@ -970,7 +970,7 @@ const Transaction = () => {
                                               className={classNames(
                                                 active
                                                   ? 'text-white'
-                                                  : 'text-indigo-600',
+                                                  : 'text-teal-600',
                                                 'absolute inset-y-0 right-0 flex items-center pr-4'
                                               )}
                                             >
@@ -994,7 +994,7 @@ const Transaction = () => {
 
                   <div className='flex justify-end sm:justify-start'>
                     <button
-                      className='my-3 bg-blue-500 px-4 py-2 rounded-md text-md text-white'
+                      className='my-3 bg-teal-500 px-4 py-2 rounded-md text-md text-white'
                       onClick={onButtonClick}
                       disabled={downloadDisabled}
                     >

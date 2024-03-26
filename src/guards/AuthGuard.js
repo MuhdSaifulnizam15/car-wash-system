@@ -30,7 +30,7 @@ export default function AuthGuard({ children }) {
     if (!isInitialized) {
       return (
         <div className='h-screen flex items-center justify-center'>
-          <div className='w-20 h-20 rounded-full animate-spin border-6 border-solid border-blue-500 border-t-transparent' />
+          <div className='w-20 h-20 rounded-full animate-spin border-6 border-solid border-teal-500 border-t-transparent' />
         </div>
       );
     }

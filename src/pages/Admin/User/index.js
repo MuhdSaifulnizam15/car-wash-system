@@ -27,7 +27,7 @@ const Users = () => {
               <button
                 type="button"
                 onClick={() => console.log('add user')}
-                className="justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
               >
                 Add User
               </button>
@@ -140,7 +140,7 @@ const Users = () => {
 
                                 <button
                                   type="button"
-                                  className="w-7 h-7 hover:text-blue-300 mx-2"
+                                  className="w-7 h-7 hover:text-teal-300 mx-2"
                                   onClick={() => console.log("edit users")}
                                 >
                                   <svg

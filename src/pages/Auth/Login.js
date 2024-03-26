@@ -77,7 +77,7 @@ const Login = () => {
           <div className='flex-shrink-0'>
             <img
               className='mx-auto h-12 w-auto'
-              src='/images/logo.png'
+              src='/images/logoipsum.svg'
               alt='Rolex Barbershop Logo'
             />
           </div>
@@ -106,7 +106,7 @@ const Login = () => {
                 {...register('email')}
                 required
                 disabled={loading}
-                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500'
+                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500'
                 placeholder='Email address'
               />
             </div>
@@ -123,7 +123,7 @@ const Login = () => {
                 autoComplete='current-password'
                 required
                 disabled={loading}
-                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500'
+                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500'
                 placeholder='Password'
               />
             </div>
@@ -135,7 +135,7 @@ const Login = () => {
                 id='remember-me'
                 name='remember-me'
                 type='checkbox'
-                className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+                className='h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500'
               />
               <label htmlFor='remember-me' className='ml-2 block text-sm'>
                 Remember me
@@ -145,7 +145,7 @@ const Login = () => {
             <div className='text-sm'>
               <a
                 href='/auth/forgot-password'
-                className='font-medium text-indigo-600 hover:text-indigo-500'
+                className='font-medium text-teal-600 hover:text-teal-500'
               >
                 Forgot your password?
               </a>
@@ -156,11 +156,11 @@ const Login = () => {
             <button
               type='submit'
               disabled={loading}
-              className='group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+              className='group relative flex w-full justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
             >
               <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
                 <svg
-                  className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
+                  className='h-5 w-5 text-teal-500 group-hover:text-teal-400'
                   xmlns='http://www.w3.org/2000/svg'
                   viewBox='0 0 20 20'
                   fill='currentColor'
@@ -178,7 +178,7 @@ const Login = () => {
               ) : (
                 <div
                   className='w-5 h-5 rounded-full animate-spin
-                    border-2 border-solid border-blue-500 border-t-transparent'
+                    border-2 border-solid border-teal-500 border-t-transparent'
                 ></div>
               )}
             </button>
@@ -190,7 +190,7 @@ const Login = () => {
             Don't have an account?
             <a
               href='/auth/register'
-              className='font-medium text-indigo-600 hover:text-indigo-500 pl-1'
+              className='font-medium text-teal-600 hover:text-teal-500 pl-1'
             >
               Get Started
             </a>

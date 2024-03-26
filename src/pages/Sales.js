@@ -316,7 +316,7 @@ const Sales = () => {
                                   Branch
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       <span
                                         className='ml-3 block truncate text-gray-700'
@@ -358,7 +358,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-indigo-600'
+                                                  ? 'text-white bg-blue-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -385,7 +385,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-indigo-600',
+                                                        : 'text-blue-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -419,7 +419,7 @@ const Sales = () => {
                                   Staff
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       {selectedStaff?.avatar ? (
                                         <img
@@ -473,7 +473,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-indigo-600'
+                                                  ? 'text-white bg-blue-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -505,7 +505,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-indigo-600',
+                                                        : 'text-blue-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -539,7 +539,7 @@ const Sales = () => {
                                   Services
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       <span className='block truncate text-gray-700'>
                                         Select Services
@@ -568,7 +568,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-indigo-600'
+                                                  ? 'text-white bg-blue-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -604,7 +604,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-indigo-600',
+                                                        : 'text-blue-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -637,7 +637,7 @@ const Sales = () => {
                             type='text'
                             name='customer_phone_no'
                             id='customer_phone_no'
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
                             placeholder='Enter Customer Phone Number'
                             onChange={handleEventChange}
                             value={customerPhoneNumber}
@@ -655,7 +655,7 @@ const Sales = () => {
                             type='text'
                             name='customer_name'
                             id='customer_name'
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
                             placeholder='Enter Customer Name'
                             onChange={handleEventChange}
                             value={customerName}
@@ -677,7 +677,7 @@ const Sales = () => {
                                     Redeem Service
                                   </Listbox.Label>
                                   <div className='relative mt-1'>
-                                    <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                    <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
                                       <span className='flex items-center'>
                                         <span
                                           className='ml-3 block truncate text-gray-700'
@@ -717,7 +717,7 @@ const Sales = () => {
                                               className={({ active }) =>
                                                 classNames(
                                                   active
-                                                    ? 'text-white bg-indigo-600'
+                                                    ? 'text-white bg-blue-600'
                                                     : 'text-gray-900',
                                                   'relative cursor-default select-none py-2 pl-3 pr-9'
                                                 )
@@ -765,7 +765,7 @@ const Sales = () => {
                                                       className={classNames(
                                                         active
                                                           ? 'text-white'
-                                                          : 'text-indigo-600',
+                                                          : 'text-blue-600',
                                                         'absolute inset-y-0 right-0 flex items-center pr-4'
                                                       )}
                                                     >
@@ -986,7 +986,7 @@ const Sales = () => {
                       </button>
                       <button
                         type='submit'
-                        className='justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                        className='justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                       >
                         Save
                       </button>

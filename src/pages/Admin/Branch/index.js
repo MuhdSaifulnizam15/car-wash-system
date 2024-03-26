@@ -160,7 +160,7 @@ const Branch = () => {
               <button
                 type='button'
                 onClick={() => setShowModal(true)}
-                className='justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                className='justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
               >
                 Add Branch
               </button>
@@ -212,7 +212,7 @@ const Branch = () => {
                           name='branch_name'
                           id='branch_name'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Branch Name'
                           onChange={handleEventChange}
                           value={name}
@@ -231,7 +231,7 @@ const Branch = () => {
                           name='address'
                           id='address'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Address'
                           onChange={handleEventChange}
                           value={address}
@@ -250,7 +250,7 @@ const Branch = () => {
                           name='city'
                           id='city'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter City'
                           onChange={handleEventChange}
                           value={city}
@@ -269,7 +269,7 @@ const Branch = () => {
                           name='state'
                           id='state'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter State'
                           onChange={handleEventChange}
                           value={state}
@@ -288,7 +288,7 @@ const Branch = () => {
                           name='postcode'
                           id='postcode'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Postcode'
                           onChange={handleEventChange}
                           value={postcode}
@@ -307,7 +307,7 @@ const Branch = () => {
                           name='phone_no'
                           id='phone_no'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Office No'
                           onChange={handleEventChange}
                           value={phoneNo}
@@ -335,7 +335,7 @@ const Branch = () => {
                                 'Create'
                               )
                             ) : (
-                              <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-blue-500 border-t-transparent' />
+                              <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-teal-500 border-t-transparent' />
                             )}
                           </button>
                         ) : null}
@@ -389,7 +389,7 @@ const Branch = () => {
                               Delete
                             </button>
                             <button
-                              className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2'
+                              className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-teal-600 focus:ring-2'
                               onClick={() => {
                                 setShowDeleteModal(false);
                                 setSelected(null);
@@ -471,7 +471,7 @@ const Branch = () => {
 
                                 <button
                                   type='button'
-                                  className='w-7 h-7 hover:text-blue-300 mx-2'
+                                  className='w-7 h-7 hover:text-teal-300 mx-2'
                                   onClick={() => {
                                     setShowModal(true);
                                     setSelected(item);

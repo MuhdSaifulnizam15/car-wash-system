@@ -85,7 +85,7 @@ const Navbar = ({ current = 'Sales' }) => {
                 <div className='flex-shrink-0'>
                   <img
                     className='h-8 w-8'
-                    src='/images/logo.png'
+                    src='/images/logoipsum.svg'
                     alt='Rolex Barbershop Logo'
                   />
                 </div>

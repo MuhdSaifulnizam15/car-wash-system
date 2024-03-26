@@ -204,7 +204,7 @@ const Staff = () => {
               <button
                 type='button'
                 onClick={() => setShowModal(true)}
-                className='justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                className='justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
               >
                 Add Staff
               </button>
@@ -255,7 +255,7 @@ const Staff = () => {
                           disabled={
                             viewMode ? true : selectedItem ? true : false
                           }
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Staff Email'
                           onChange={handleEventChange}
                           value={email}
@@ -272,7 +272,7 @@ const Staff = () => {
                             name='password'
                             id='password'
                             disabled={viewMode}
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                             placeholder='Enter Staff Password'
                             onChange={handleEventChange}
                             value={password}
@@ -289,7 +289,7 @@ const Staff = () => {
                           name='staff_first_name'
                           id='staff_first_name'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Staff First Name'
                           onChange={handleEventChange}
                           value={firstName}
@@ -305,7 +305,7 @@ const Staff = () => {
                           name='staff_last_name'
                           id='staff_last_name'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Staff Last Name'
                           onChange={handleEventChange}
                           value={lastName}
@@ -321,7 +321,7 @@ const Staff = () => {
                           name='staff_phone_no'
                           id='staff_phone_no'
                           disabled={viewMode}
-                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                          className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                           placeholder='Enter Staff Phone No'
                           onChange={handleEventChange}
                           value={phoneNo}
@@ -338,7 +338,7 @@ const Staff = () => {
                             name='total_sales'
                             id='total_sales'
                             disabled={viewMode}
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                             placeholder='Enter Total Sales'
                             onChange={handleEventChange}
                             value={totalSale}
@@ -358,7 +358,7 @@ const Staff = () => {
                                 Branch
                               </Listbox.Label>
                               <div className='relative mt-1'>
-                                <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                                   <span className='flex items-center'>
                                     <span
                                       className='ml-3 block truncate text-gray-700'
@@ -400,7 +400,7 @@ const Staff = () => {
                                           className={({ active }) =>
                                             classNames(
                                               active
-                                                ? 'text-white bg-indigo-600'
+                                                ? 'text-white bg-teal-600'
                                                 : 'text-gray-900',
                                               'relative cursor-default select-none py-2 pl-3 pr-9'
                                             )
@@ -427,7 +427,7 @@ const Staff = () => {
                                                   className={classNames(
                                                     active
                                                       ? 'text-white'
-                                                      : 'text-indigo-600',
+                                                      : 'text-teal-600',
                                                     'absolute inset-y-0 right-0 flex items-center pr-4'
                                                   )}
                                                 >
@@ -461,7 +461,7 @@ const Staff = () => {
                                 Role
                               </Listbox.Label>
                               <div className='relative mt-1'>
-                                <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+                                <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm'>
                                   <span className='flex items-center'>
                                     <span
                                       className='ml-3 block truncate text-gray-700 capitalize'
@@ -507,7 +507,7 @@ const Staff = () => {
                                               className={({ active }) =>
                                                 classNames(
                                                   active
-                                                    ? 'text-white bg-indigo-600'
+                                                    ? 'text-white bg-teal-600'
                                                     : 'text-gray-900',
                                                   'relative cursor-default select-none py-2 pl-3 pr-9'
                                                 )
@@ -534,7 +534,7 @@ const Staff = () => {
                                                       className={classNames(
                                                         active
                                                           ? 'text-white'
-                                                          : 'text-indigo-600',
+                                                          : 'text-teal-600',
                                                         'absolute inset-y-0 right-0 flex items-center pr-4'
                                                       )}
                                                     >
@@ -578,7 +578,7 @@ const Staff = () => {
                                 'Create'
                               )
                             ) : (
-                              <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-blue-500 border-t-transparent' />
+                              <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-teal-500 border-t-transparent' />
                             )}
                           </button>
                         ) : null}
@@ -634,7 +634,7 @@ const Staff = () => {
                               Delete
                             </button>
                             <button
-                              className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2'
+                              className='w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-teal-600 focus:ring-2'
                               onClick={() => {
                                 setShowDeleteModal(false);
                                 setSelectedItem();
@@ -727,7 +727,7 @@ const Staff = () => {
 
                                     <button
                                       type='button'
-                                      className='w-7 h-7 hover:text-blue-300 mx-2'
+                                      className='w-7 h-7 hover:text-teal-300 mx-2'
                                       onClick={() => {
                                         setShowModal(true);
                                         setSelectedItem(item);

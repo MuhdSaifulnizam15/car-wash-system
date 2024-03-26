@@ -243,7 +243,7 @@ const ChangePassword = () => {
                       type={isOldPasswordVisible ? 'text' : 'password'}
                       name='old_password'
                       id='old_password'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter new password'
                       onChange={(e) => handleEventChange(e)}
                       value={oldPassword}
@@ -273,7 +273,7 @@ const ChangePassword = () => {
                       type={isNewPasswordVisible ? 'text' : 'password'}
                       name='new_password'
                       id='new_password'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter new password'
                       onChange={(e) => handleEventChange(e)}
                       value={newPassword}
@@ -303,7 +303,7 @@ const ChangePassword = () => {
                       type={isConfirmPasswordVisible ? 'text' : 'password'}
                       name='confirm_password'
                       id='confirm_password'
-                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm text-gray-700'
                       placeholder='Enter confirm password'
                       onChange={(e) => handleEventChange(e)}
                       value={confirmPassword}
@@ -326,12 +326,12 @@ const ChangePassword = () => {
                     <button
                       type='button'
                       onClick={submitForm}
-                      className='justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-xs font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      className='justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-xs font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
                     >
                       {!isLoading ? (
                         'Submit'
                       ) : (
-                        <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-blue-500 border-t-transparent' />
+                        <div className='w-5 h-5 rounded-full animate-spin border-2 border-solid border-teal-500 border-t-transparent' />
                       )}
                     </button>
                   </div>

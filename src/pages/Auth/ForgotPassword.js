@@ -53,7 +53,7 @@ const ForgotPassword = () => {
         <div>
           <img
             className='mx-auto h-12 w-auto'
-            src='/images/logo.png'
+            src='/images/logoipsum.svg'
             alt='Your Company'
           />
           <h2 className='my-6 text-center text-3xl font-bold tracking-tight'>
@@ -65,7 +65,7 @@ const ForgotPassword = () => {
               Remember your password?
               <a
                 href='/auth/login'
-                className='font-medium text-indigo-600 hover:text-indigo-500 pl-1'
+                className='font-medium text-teal-600 hover:text-teal-500 pl-1'
               >
                 Login Here
               </a>
@@ -92,7 +92,7 @@ const ForgotPassword = () => {
                 {...register('email_address')}
                 autoComplete='email'
                 required
-                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500'
+                className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500'
                 placeholder='Email address'
               />
             </div>
@@ -102,11 +102,11 @@ const ForgotPassword = () => {
             <button
               type='submit'
               disabled={isLoading}
-              className='group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+              className='group relative flex w-full justify-center rounded-md border border-transparent bg-teal-600 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
             >
               <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
                 <svg
-                  className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
+                  className='h-5 w-5 text-teal-500 group-hover:text-teal-400'
                   xmlns='http://www.w3.org/2000/svg'
                   viewBox='0 0 20 20'
                   fill='currentColor'
@@ -125,7 +125,7 @@ const ForgotPassword = () => {
               ) : (
                 <div
                   className='w-5 h-5 rounded-full animate-spin
-                    border-2 border-solid border-blue-500 border-t-transparent'
+                    border-2 border-solid border-teal-500 border-t-transparent'
                 ></div>
               )}
             </button>

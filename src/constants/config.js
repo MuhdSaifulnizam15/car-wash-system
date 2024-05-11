@@ -7,10 +7,10 @@ const configuration = {
         apiUrl: 'http://localhost:3001/api/v1/',
     },
     dev: {
-        apiUrl: 'http://localhost:3001/api/v1/', // dev env using local endpoint
+        apiUrl: 'https://ewash-api.basuhlah.com/api/v1/', // dev env using local endpoint
     },
     prod: {
-        apiUrl: 'https://api.rolexbarbershop.com/api/v1/',
+        apiUrl: 'https://ewash-api.basuhlah.com/api/v1/',
     }
 };
 

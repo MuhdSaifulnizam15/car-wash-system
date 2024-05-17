@@ -31,6 +31,7 @@ export const PATH_PAGE = {
     settings: '/settings',
     sales: '/sales',
     transaction: '/transactions',
+    onlineRegistration: '/online-registration',
     history: '/history',
     profile: '/profile'
 };

@@ -52,7 +52,7 @@ const Sales = () => {
 
   useEffect(() => {
     resetForm();
-  }, [resetForm]);
+  }, []);
 
   useEffect(() => {
     console.log('user', user);

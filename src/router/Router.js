@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { 
+import {
   Navigate,
   useRoutes,
   // useLocation
@@ -147,6 +147,12 @@ export default function Router() {
         // { path: '500', element: <Page500 /> },
         { path: '404', element: <NotFound /> },
         { path: '403', element: <Forbidden /> },
+        {
+          path: 'registration',
+          element: (
+            <Order />
+          ),
+        },
         { path: '*', element: <Navigate to='/404' replace /> },
       ],
     },
@@ -212,6 +218,7 @@ const History = Loadable(lazy(() => import('pages/History')));
 const Profile = Loadable(lazy(() => import('pages/Profile')));
 const Sales = Loadable(lazy(() => import('pages/Sales')));
 const Transaction = Loadable(lazy(() => import('pages/Transaction')));
+const Order = Loadable(lazy(() => import('pages/Order')));
 
 // Admin
 // const Dashboard = Loadable(lazy(() => import('pages/Admin/Dashboard')));

@@ -94,7 +94,7 @@ export function getAllStaff({ page = 1, limit = 10, branch = '', sortBy = '', })
     dispatch(slice.actions.startLoading());
     try {
       let url = `/staff?page=${page}`;
-      if (limit) url += `&userId=${limit}`;
+      if (limit) url += `&limit=${limit}`;
       if (sortBy) url += `&sortBy=${sortBy}`;
       if (branch) url += `&branch_id=${branch}`;
 

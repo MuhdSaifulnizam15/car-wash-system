@@ -8,9 +8,9 @@ const Footer = () => {
           Copyright © {new Date().getFullYear()} -{' '}
           <a
             className="font-semibold"
-            href="mailto:muhdsaifulnizam1998@gmail.com"
+            href="mailto:support@basuhlah.com"
           >
-            Yehga
+            Basuhlah Car Wash
           </a>
         </p>
       </div>

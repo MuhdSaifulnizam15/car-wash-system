@@ -251,9 +251,9 @@ const ChangePassword = () => {
                       }}
                     >
                       {isOldPasswordVisible ? (
-                        <EyeSlashIcon className='h-5 w-5' />
+                        <EyeSlashIcon className='h-5 w-5' color='gray' />
                       ) : (
-                        <EyeIcon className='h-5 w-5' />
+                        <EyeIcon className='h-5 w-5' color='gray' />
                       )}
                     </button>
                   </div>
@@ -281,9 +281,9 @@ const ChangePassword = () => {
                       }}
                     >
                       {isNewPasswordVisible ? (
-                        <EyeSlashIcon className='h-5 w-5' />
+                        <EyeSlashIcon className='h-5 w-5' color='gray' />
                       ) : (
-                        <EyeIcon className='h-5 w-5' />
+                        <EyeIcon className='h-5 w-5' color='gray' />
                       )}
                     </button>
                   </div>
@@ -311,9 +311,9 @@ const ChangePassword = () => {
                       }}
                     >
                       {isConfirmPasswordVisible ? (
-                        <EyeSlashIcon className='h-5 w-5' />
+                        <EyeSlashIcon className='h-5 w-5' color='gray' />
                       ) : (
-                        <EyeIcon className='h-5 w-5' />
+                        <EyeIcon className='h-5 w-5' color='gray' />
                       )}
                     </button>
                   </div>

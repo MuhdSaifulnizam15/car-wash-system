@@ -148,7 +148,7 @@ export default function Router() {
         { path: '404', element: <NotFound /> },
         { path: '403', element: <Forbidden /> },
         {
-          path: 'registration',
+          path: 'register-now',
           element: (
             <Order />
           ),

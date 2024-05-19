@@ -1,7 +1,8 @@
-/* eslint-disable no-use-before-define */
 import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/react/20/solid';
+
+import axios from 'utils/axios';
 
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
@@ -16,7 +17,7 @@ import useAuth from 'hooks/useAuth';
 import { useDispatch, useSelector } from 'redux/store';
 
 import { getAllBranch } from 'redux/slices/branch';
-import { getAllStaff } from 'redux/slices/staff';
+import { getAllStaff, getStaffById } from 'redux/slices/staff';
 import { getAllServices } from 'redux/slices/services';
 import { getCustomerByPhoneNo } from 'redux/slices/customer';
 import { addSales } from 'redux/slices/sales';
@@ -32,11 +33,11 @@ const Sales = () => {
   const [isSelectedStaffDisabled, setIsSelectedStaffDisabled] = useState(true);
 
   const [total, setTotal] = useState(0);
-  // const [subTotal, setSubTotal] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
   const [rewardedPoint, setRewardedPoint] = useState(0);
   const [redeemedPoint, setRedeemedPoint] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
-  // const [discount, setDiscount] = useState(0);
+  const [discount, setDiscount] = useState(0);
   const [showRedeemPointField, setShowRedeemPointField] = useState(false);
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNum] = useState();
@@ -62,24 +63,19 @@ const Sales = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      dispatch(
-        getAllStaff({ 
-          limit: 50, 
-          // branch: staff_info?.branch_id?.id 
-        })
-      );
-      // ...
-    }
-    
+  useEffect(async () => {
     if (staff_info) {
+      console.log('staff info', staff_info);
       if (user?.role === 'staff') setSelectedStaff(staff_info);
       setSelectedBranch(staff_info?.branch_id);
     }
-    fetchData();
-  }, [dispatch, staff_info, user?.role]);
+    await dispatch(
+      getAllStaff({ 
+        limit: 50, 
+        // branch: staff_info?.branch_id?.id 
+      })
+    );
+  }, [staff_info]);
 
   useEffect(async () => {
     // if (
@@ -137,16 +133,13 @@ const Sales = () => {
     }
   }, [customerPhoneNumber]);
 
-  useEffect(() => {
-    async function fetchData() {
-      dispatch(getAllBranch({ limit: 50 }));
-      dispatch(getAllServices({ limit: 50 }));
-    }
-    fetchData();
+  useEffect(async () => {
+    await dispatch(getAllBranch({ limit: 50 }));
+    await dispatch(getAllServices({ limit: 50 }));
   }, [dispatch]);
 
   useEffect(() => {
-    // console.log('customer', customer);
+    console.log('customer', customer);
     if (customer) {
       setTotalPoints(customer?.total_membership_point);
       setCustomerName(customer?.name);
@@ -264,9 +257,9 @@ const Sales = () => {
           service: serv.id,
           quantity: serv.quantity,
         })),
-        total: total,
-        total_redeemed_point: _redeemedPoint,
-        total_rewarded_point: rewardedPoint,
+        total: parseFloat(total).toFixed(2),
+        total_redeemed_point: parseFloat(_redeemedPoint).toFixed(2),
+        total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
         freebie: selectedFreebie?.name
           ? [
               {
@@ -285,9 +278,9 @@ const Sales = () => {
           service: serv.id,
           quantity: serv.quantity,
         })),
-        total: total,
-        total_redeemed_point: _redeemedPoint,
-        total_rewarded_point: rewardedPoint,
+        total: parseFloat(total).toFixed(2),
+        total_redeemed_point: parseFloat(_redeemedPoint).toFixed(2),
+        total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
         customer_name: customerName,
         customer_phone_no: customerPhoneNumber,
       };
@@ -323,7 +316,7 @@ const Sales = () => {
                                   Branch
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       <span
                                         className='ml-3 block truncate text-gray-700'
@@ -365,7 +358,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-blue-600'
+                                                  ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -392,7 +385,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-blue-600',
+                                                        : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -426,7 +419,7 @@ const Sales = () => {
                                   Staff
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       {selectedStaff?.avatar ? (
                                         <img
@@ -480,7 +473,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-blue-600'
+                                                  ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -512,7 +505,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-blue-600',
+                                                        : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -546,7 +539,7 @@ const Sales = () => {
                                   Services
                                 </Listbox.Label>
                                 <div className='relative mt-1'>
-                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
+                                  <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
                                     <span className='flex items-center'>
                                       <span className='block truncate text-gray-700'>
                                         Select Services
@@ -575,7 +568,7 @@ const Sales = () => {
                                             className={({ active }) =>
                                               classNames(
                                                 active
-                                                  ? 'text-white bg-blue-600'
+                                                  ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                               )
@@ -611,7 +604,7 @@ const Sales = () => {
                                                     className={classNames(
                                                       active
                                                         ? 'text-white'
-                                                        : 'text-blue-600',
+                                                        : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                                     )}
                                                   >
@@ -644,7 +637,7 @@ const Sales = () => {
                             type='text'
                             name='customer_phone_no'
                             id='customer_phone_no'
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
                             placeholder='Enter Customer Phone Number'
                             onChange={handleEventChange}
                             value={customerPhoneNumber}
@@ -662,7 +655,7 @@ const Sales = () => {
                             type='text'
                             name='customer_name'
                             id='customer_name'
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
                             placeholder='Enter Customer Name'
                             onChange={handleEventChange}
                             value={customerName}
@@ -684,7 +677,7 @@ const Sales = () => {
                                     Redeem Service
                                   </Listbox.Label>
                                   <div className='relative mt-1'>
-                                    <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
+                                    <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
                                       <span className='flex items-center'>
                                         <span
                                           className='ml-3 block truncate text-gray-700'
@@ -724,7 +717,7 @@ const Sales = () => {
                                               className={({ active }) =>
                                                 classNames(
                                                   active
-                                                    ? 'text-white bg-blue-600'
+                                                    ? 'text-white bg-indigo-600'
                                                     : 'text-gray-900',
                                                   'relative cursor-default select-none py-2 pl-3 pr-9'
                                                 )
@@ -772,7 +765,7 @@ const Sales = () => {
                                                       className={classNames(
                                                         active
                                                           ? 'text-white'
-                                                          : 'text-blue-600',
+                                                          : 'text-indigo-600',
                                                         'absolute inset-y-0 right-0 flex items-center pr-4'
                                                       )}
                                                     >
@@ -993,7 +986,7 @@ const Sales = () => {
                       </button>
                       <button
                         type='submit'
-                        className='justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                        className='justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       >
                         Save
                       </button>

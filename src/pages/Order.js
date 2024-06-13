@@ -13,14 +13,18 @@ import { classNames } from 'utils/helper';
 
 import { getAllBranch } from 'redux/slices/branch';
 import { addBooking } from 'redux/slices/booking';
+import { getCustomerByPhoneNo } from 'redux/slices/customer';
 
 const Order = () => {
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNum] = useState();
   const [customerCarPlateNumber, setCustomerCarPlateNumber] = useState();
   const [selectedBranch, setSelectedBranch] = useState();
+  const [selectedCustomer, setSelectedCustomer] = useState({});
+  const [totalPoints, setTotalPoints] = useState(0);
 
   const { branch } = useSelector((state) => state.branch);
+  const { customer } = useSelector((state) => state.customer);
 
   const dispatch = useDispatch();
 
@@ -30,6 +34,32 @@ const Order = () => {
     }
     fetchData();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (
+      customerPhoneNumber &&
+      customerPhoneNumber.length > 9 &&
+      customerPhoneNumber.length < 12
+    ) {
+      checkForTotalPoints();
+    } else {
+      setTotalPoints(0);
+      setCustomerName('');
+    }
+  }, [customerPhoneNumber]);
+
+  useEffect(() => {
+    // console.log('customer', customer);
+    if (customer) {
+      setTotalPoints(customer?.total_membership_point);
+      setCustomerName(customer?.name);
+      setSelectedCustomer(customer);
+    } else {
+      setTotalPoints(0);
+      setCustomerName('');
+      setSelectedCustomer({});
+    }
+  }, [customer]);
 
   const handleEventChange = (event) => {
     switch (event.target.name) {
@@ -51,24 +81,42 @@ const Order = () => {
     }
   };
 
+  const checkForTotalPoints = () => {
+    dispatch(getCustomerByPhoneNo(customerPhoneNumber));
+  };
+
   const resetForm = () => {
     // console.log('resetForm');
     setCustomerName('');
     setCustomerPhoneNum('');
     setCustomerCarPlateNumber('');
+    setSelectedCustomer({});
   };
 
   const submitForm = async (event) => {
     event.preventDefault();
 
-    let data = {
-      name: customerName,
-      phone_no: customerPhoneNumber,
-      car_plate: customerCarPlateNumber,
-      branch_id: selectedBranch.id,
-    };
+    let data;
 
-    console.log('data', data);
+    if (customer) {
+      data = {
+        // name: customerName,
+        phone_no: customerPhoneNumber,
+        car_plate: customerCarPlateNumber,
+        branch_id: selectedBranch.id,
+        customer_id: selectedCustomer.id
+      };
+    } else {
+      data = {
+        // name: customerName,
+        phone_no: customerPhoneNumber,
+        car_plate: customerCarPlateNumber,
+        branch_id: selectedBranch.id,
+        customer_name: customerName
+      };
+    }
+
+    // console.log('data', data);
     await dispatch(addBooking(data));
     resetForm();
   };
@@ -188,24 +236,6 @@ const Order = () => {
                             htmlFor='price'
                             className='block text-sm font-medium text-gray-700 mb-2'
                           >
-                            Customer Name
-                          </label>
-                          <input
-                            type='text'
-                            name='customer_name'
-                            id='customer_name'
-                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
-                            placeholder='Enter Customer Name'
-                            onChange={handleEventChange}
-                            value={customerName}
-                          />
-                        </div>
-
-                        <div className='col-span-6 sm:col-span-4'>
-                          <label
-                            htmlFor='price'
-                            className='block text-sm font-medium text-gray-700 mb-2'
-                          >
                             Customer Phone Number
                           </label>
                           <input
@@ -217,6 +247,27 @@ const Order = () => {
                             onChange={handleEventChange}
                             value={customerPhoneNumber}
                           />
+                        </div>
+
+                        <div className='col-span-6 sm:col-span-4'>
+                          <label
+                            htmlFor='price'
+                            className='block text-sm font-medium text-gray-700 mb-2'
+                          >
+                            Customer Name
+                          </label>
+                          <input
+                            type='text'
+                            name='customer_name'
+                            id='customer_name'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm text-gray-700'
+                            placeholder='Enter Customer Name'
+                            onChange={handleEventChange}
+                            value={customerName}
+                          />
+                          <label className='block mt-3 text-gray-700 text-right text-sm'>
+                            {'Total Points Collected: ' + totalPoints}
+                          </label>
                         </div>
 
                         <div className='col-span-6 sm:col-span-4'>

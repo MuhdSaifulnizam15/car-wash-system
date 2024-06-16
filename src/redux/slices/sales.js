@@ -20,6 +20,7 @@ const initialState = {
   hasNextPage: true,
   prevPage: null,
   nextPage: null,
+  saleStatus: false,
 };
 
 const slice = createSlice({
@@ -35,6 +36,7 @@ const slice = createSlice({
     hasError(state, action) {
       state.isLoading = false;
       state.error = action.payload;
+      state.saleStatus = false;
     },
 
     // GET SALES
@@ -54,6 +56,7 @@ const slice = createSlice({
     // ADD SALES
     addSalesSuccess(state, action) {
       state.isLoading = false;
+      state.saleStatus = true;
     },
 
     // DELETE SALES

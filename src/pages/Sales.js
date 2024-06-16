@@ -40,12 +40,15 @@ const Sales = () => {
   const [discount, setDiscount] = useState(0);
   const [showRedeemPointField, setShowRedeemPointField] = useState(false);
   const [customerName, setCustomerName] = useState();
+  const [customerCode, setCustomerCode] = useState();
+  const [plateNum, setPlateNum] = useState();
   const [customerPhoneNumber, setCustomerPhoneNum] = useState();
 
   const { branch } = useSelector((state) => state.branch);
   const { staff } = useSelector((state) => state.staff);
   const { services } = useSelector((state) => state.services);
   const { customer } = useSelector((state) => state.customer);
+  const { saleStatus } = useSelector((state) => state.sales);
 
   const dispatch = useDispatch();
 
@@ -54,6 +57,11 @@ const Sales = () => {
   useEffect(() => {
     resetForm();
   }, []);
+
+  useEffect(() => {
+    // console.log('saleStatus', saleStatus);
+    if(saleStatus) resetForm();
+  }, [saleStatus]);
 
   useEffect(() => {
     console.log('user', user);
@@ -129,6 +137,8 @@ const Sales = () => {
     } else {
       setTotalPoints(0);
       setCustomerName('');
+      setCustomerCode('');
+      setPlateNum('');
       setSelectedFreebie({});
     }
   }, [customerPhoneNumber]);
@@ -218,6 +228,14 @@ const Sales = () => {
         setCustomerName(event.target.value);
         break;
 
+      case 'customer_code':
+        setCustomerCode(event.target.value);
+        break;
+
+      case 'plate_num':
+        setPlateNum(event.target.value);
+        break;
+
       case 'redeem_point':
         setRedeemedPoint(event.target.value);
         break;
@@ -234,6 +252,8 @@ const Sales = () => {
     setSelectedService([]);
     if (user?.role !== 'staff') setSelectedStaff({});
     setCustomerName('');
+    setCustomerCode('');
+    setPlateNum('');
     setCustomerPhoneNum('');
     setSelectedFreebie({});
     setSelectedCustomer({});
@@ -243,7 +263,7 @@ const Sales = () => {
     }
   };
 
-  const submitForm = async (event) => {
+  const submitForm = (event) => {
     event.preventDefault();
     let _redeemedPoint = selectedFreebie ? selectedFreebie?.point : 0;
 
@@ -260,6 +280,8 @@ const Sales = () => {
         total: parseFloat(total).toFixed(2),
         total_redeemed_point: parseFloat(_redeemedPoint ?? 0).toFixed(2),
         total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
+        customer_code: customerCode,
+        car_plate: plateNum,
         freebie: selectedFreebie?.name
           ? [
               {
@@ -282,13 +304,14 @@ const Sales = () => {
         total_redeemed_point: parseFloat(_redeemedPoint ?? 0).toFixed(2),
         total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
         customer_name: customerName,
+        customer_code: customerCode,
+        plate_num: plateNum,
         customer_phone_no: customerPhoneNumber,
       };
     }
 
     console.log('data', data);
-    await dispatch(addSales(data));
-    resetForm();
+    dispatch(addSales(data));
   };
 
   return (
@@ -663,6 +686,42 @@ const Sales = () => {
                           <label className='block mt-3 text-gray-700 text-right text-sm'>
                             {'Total Points Collected: ' + totalPoints}
                           </label>
+                        </div>
+
+                        <div className='col-span-6 sm:col-span-4'>
+                          <label
+                            htmlFor='plate_num'
+                            className='block text-sm font-medium text-gray-700 mb-2'
+                          >
+                            Car Plate Number (Online Booking Pickup)
+                          </label>
+                          <input
+                            type='text'
+                            name='plate_num'
+                            id='plate_num'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            placeholder='Enter Car Plate Number (For online order pickup)'
+                            onChange={handleEventChange}
+                            value={plateNum}
+                          />
+                        </div>
+
+                        <div className='col-span-6 sm:col-span-4'>
+                          <label
+                            htmlFor='code'
+                            className='block text-sm font-medium text-gray-700 mb-2'
+                          >
+                            Code Security
+                          </label>
+                          <input
+                            type='text'
+                            name='customer_code'
+                            id='customer_code'
+                            className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                            placeholder='Enter Customer Code (For online order pickup)'
+                            onChange={handleEventChange}
+                            value={customerCode}
+                          />
                         </div>
 
                         {showRedeemPointField && (

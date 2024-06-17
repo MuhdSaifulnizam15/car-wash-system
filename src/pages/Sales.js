@@ -8,7 +8,7 @@ import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 
-import freebieData from 'data/freebies';
+// import freebieData from 'data/freebies';
 
 import { classNames } from 'utils/helper';
 
@@ -769,8 +769,8 @@ const Sales = () => {
                                       leaveTo='opacity-0'
                                     >
                                       <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-                                        {freebieData &&
-                                          freebieData.map((freebie) => (
+                                        {services.docs &&
+                                          services.docs.map((freebie) => (
                                             <Listbox.Option
                                               key={freebie.id}
                                               className={({ active }) =>
@@ -783,14 +783,14 @@ const Sales = () => {
                                               }
                                               value={freebie}
                                               disabled={
-                                                freebie.point > totalPoints
+                                                (freebie.price * 10) > totalPoints
                                               }
                                             >
                                               {({ selected, active }) => (
                                                 <>
                                                   <div
                                                     className={classNames(
-                                                      freebie.point >
+                                                      (freebie.price * 10) >
                                                         totalPoints
                                                         ? 'line-through'
                                                         : '',
@@ -815,7 +815,7 @@ const Sales = () => {
                                                         'ml-3 block truncate'
                                                       )}
                                                     >
-                                                      {freebie.point + ' pts '}
+                                                      {(freebie.price * 10) + ' pts '}
                                                     </span>
                                                   </div>
 

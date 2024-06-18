@@ -134,6 +134,14 @@ export default function Router() {
             </RoleBasedGuard>
           ),
         },
+        {
+          path: 'booking',
+          element: (
+            <RoleBasedGuard accessibleRoles={['admin', 'manager']}>
+              <Booking />
+            </RoleBasedGuard>
+          ),
+        },
       ],
     },
 
@@ -228,6 +236,7 @@ const Services = Loadable(lazy(() => import('pages/Admin/Service')));
 const Branch = Loadable(lazy(() => import('pages/Admin/Branch')));
 const Staff = Loadable(lazy(() => import('pages/Admin/Staff')));
 const Customer = Loadable(lazy(() => import('pages/Admin/Customer')));
+const Booking = Loadable(lazy(() => import('pages/Admin/Booking')));
 
 // Main
 // const ComingSoon = Loadable(lazy(() => import('pages/ComingSoon')));

@@ -70,6 +70,13 @@ const navigation = [
     isAdmin: true,
     isManager: true,
   },
+  {
+    name: 'Booking',
+    href: PATH_ADMIN.booking.root,
+    current: false,
+    isAdmin: true,
+    isManager: true,
+  },
 ];
 
 const Navbar = ({ current = 'Sales' }) => {

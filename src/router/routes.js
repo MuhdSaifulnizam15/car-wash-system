@@ -79,4 +79,11 @@ export const PATH_ADMIN = {
         showById: path(ROOTS_ADMIN, '/user/detail'),
         editById: path(ROOTS_ADMIN, `/user/edit`)
     },
+    booking: {
+        root: path(ROOTS_ADMIN, '/booking'),
+        list: path(ROOTS_ADMIN, '/booking/list'),
+        newBooking: path(ROOTS_ADMIN, '/booking/new'),
+        showById: path(ROOTS_ADMIN, '/booking/detail'),
+        editById: path(ROOTS_ADMIN, `/booking/edit`),
+    },
 }

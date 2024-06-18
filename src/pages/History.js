@@ -26,6 +26,7 @@ const History = () => {
   const [customerName, setCustomerName] = useState(null);
   const [salesDate, setSalesDate] = useState(null);
   const [branchName, setBranchName] = useState(null);
+  const [carPlate, setCarPlate] = useState(null);
   const [barberName, setBarberName] = useState(null);
   const [total, setTotal] = useState(null);
   const [services, setServices] = useState([]);
@@ -145,6 +146,10 @@ const History = () => {
 
       case 'branch_name':
         setBranchName(event.target.value);
+        break;
+
+      case 'car_plate':
+        setCarPlate(event.target.value);
         break;
 
       case 'barber_name':
@@ -272,7 +277,23 @@ const History = () => {
 
                   <div className='relative px-6 pb-6 flex-auto'>
                     <label className='block text-sm font-medium text-gray-700 mb-2'>
-                      Barber Name
+                      Car Plate
+                    </label>
+                    <input
+                      type='text'
+                      name='car_plate'
+                      id='car_plate'
+                      disabled={viewMode}
+                      className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
+                      placeholder='Enter Car Plate Num'
+                      onChange={handleEventChange}
+                      value={carPlate}
+                    />
+                  </div>
+
+                  <div className='relative px-6 pb-6 flex-auto'>
+                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      Staff Name
                     </label>
                     <input
                       type='text'
@@ -280,7 +301,7 @@ const History = () => {
                       id='barber_name'
                       disabled={viewMode}
                       className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700'
-                      placeholder='Enter Barber Name'
+                      placeholder='Enter Staff Name'
                       onChange={handleEventChange}
                       value={barberName}
                     />
@@ -806,6 +827,7 @@ const History = () => {
                                 setCustomerName(item?.customer_id?.name);
                                 setSalesDate(item?.createdAt);
                                 setBranchName(item?.branch_id?.name);
+                                setCarPlate(item?.car_plate);
                                 setBarberName(item?.barber_id?.full_name);
                                 setTotal(item?.total);
                                 setServices(item?.order);

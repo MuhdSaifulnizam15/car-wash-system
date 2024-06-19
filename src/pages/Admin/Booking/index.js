@@ -10,15 +10,10 @@ import Pagination from "components/Pagination";
 
 import { classNames } from "utils/helper";
 
-import {
-  getAllStaff,
-  addStaff,
-  deleteStaff,
-  updateStaff,
-} from "redux/slices/staff";
 import { getAllBranch } from "redux/slices/branch";
 import { statusList } from "constants/status-list";
-import { getAllBooking } from "redux/slices/booking";
+import { addBooking, deleteBooking, getAllBooking, updateBooking } from "redux/slices/booking";
+import { getCustomerByPhoneNo } from "redux/slices/customer";
 
 const Booking = () => {
   const [showModal, setShowModal] = useState(false);
@@ -27,17 +22,30 @@ const Booking = () => {
   const [selectedItem, setSelectedItem] = useState();
   const [selectedBranch, setSelectedBranch] = useState();
   const [selectedStatus, setSelectedStatus] = useState();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
   const [customerName, setCustomerName] = useState();
   const [phoneNo, setPhoneNo] = useState();
   const [carPlate, setCarPlate] = useState();
   const [code, setCode] = useState();
-  const { staff, isLoading } = useSelector((state) => state.staff);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [selectedCustomer, setSelectedCustomer] = useState({});
+
   const { branch } = useSelector((state) => state.branch);
-  const { booking } = useSelector((state) => state.booking);
+  const { customer } = useSelector((state) => state.customer);
+
+  const { 
+    booking,
+    isLoading,
+    pagingCounter,
+    currPage,
+    totalDocs,
+    totalPages,
+    limit,
+    hasPrevPage,
+    hasNextPage,
+    prevPage,
+    nextPage,
+  } = useSelector((state) => state.booking);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -54,12 +62,43 @@ const Booking = () => {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    dispatch(
+      getAllBooking({
+        page: currentPage
+      })
+    );
+  }, [currentPage, dispatch]);
+
+  useEffect(() => {
+    if (
+      phoneNo &&
+      phoneNo.length > 9 &&
+      phoneNo.length < 12
+    ) {
+      checkForTotalPoints();
+    } else {
+      setTotalPoints(0);
+      setCustomerName('');
+    }
+  // eslint-disable-next-line no-use-before-define
+  }, [phoneNo]);
+
+  useEffect(() => {
+    // console.log('customer', customer);
+    if (customer) {
+      setTotalPoints(customer?.total_membership_point);
+      setCustomerName(customer?.name);
+      setSelectedCustomer(customer);
+    } else {
+      setTotalPoints(0);
+      setCustomerName('');
+      setSelectedCustomer({});
+    }
+  }, [customer]);
+
   const handleEventChange = (event) => {
     switch (event.target.name) {
-      case "staff_name":
-        setName(event.target.value);
-        break;
-
       case "customer_phone_num":
         const validated = event.target.value.match(/^(\d*\.{0,1}\d{0,2}$)/);
         if (validated) {
@@ -85,42 +124,39 @@ const Booking = () => {
   };
 
   const resetForm = () => {
-    setName();
     setPhoneNo();
-    setEmail();
-    setFirstName();
-    setLastName();
     setViewMode(false);
     setSelectedItem();
     setSelectedBranch();
     setSelectedStatus();
     setShowModal(false);
+    setSelectedCustomer({});
+  };
+
+  const checkForTotalPoints = () => {
+    dispatch(getCustomerByPhoneNo(phoneNo));
   };
 
   const submitForm = async (event) => {
     event.preventDefault();
-    if (phoneNo && selectedBranch && email && firstName && lastName) {
+    if (phoneNo && selectedBranch) {
       const data = {
-        full_name: firstName + " " + lastName,
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
         phone_no: phoneNo,
+        car_plate: carPlate,
         branch_id: selectedBranch?.id,
-        user_id: selectedItem?.user_id?.id
+        customer_id: selectedItem?.customer_id ? selectedItem?.customer_id?.id : selectedCustomer?.id ?? '',
+        customer_name: customerName,
+        status: selectedStatus?.value
       };
 
-      console.log("data", data);
-      if (selectedItem) await dispatch(updateStaff(selectedItem?.id, data));
-      else await dispatch(addStaff(data));
-      await dispatch(getAllStaff());
+      if (selectedItem) dispatch(updateBooking(selectedItem?.id, data));
+      else dispatch(addBooking(data));
     }
   };
 
-  const submitStaffDeletion = async (id) => {
+  const submitBookingDeletion = async (id) => {
     console.log(id);
-    await dispatch(deleteStaff(id));
-    await dispatch(getAllStaff());
+    dispatch(deleteBooking(id));
     setShowDeleteModal(false);
     setSelectedItem();
   };
@@ -302,7 +338,7 @@ const Booking = () => {
                           type="text"
                           name="customer_name"
                           id="customer_name"
-                          disabled={viewMode}
+                          disabled={viewMode ? true : selectedItem ? true : false}
                           className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700"
                           placeholder="Enter Customer Name"
                           onChange={handleEventChange}
@@ -507,16 +543,16 @@ const Booking = () => {
                         </div>
                         <div className="mt-2 text-center sm:ml-4 sm:text-left">
                           <h4 className="text-lg font-medium text-gray-800">
-                            Delete staff ?
+                            Delete booking ?
                           </h4>
                           <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                            Are you sure you want to delete this staff?
+                            Are you sure you want to delete this booking?
                           </p>
                           <div className="items-center gap-2 mt-3 sm:flex">
                             <button
                               className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
                               onClick={() =>
-                                submitStaffDeletion(selectedItem?.id)
+                                submitBookingDeletion(selectedItem?.id)
                               }
                             >
                               Delete
@@ -580,10 +616,6 @@ const Booking = () => {
                                     setCarPlate(item?.car_plate);
                                     setCode(item?.code);
                                     setViewMode(true);
-                                    setName(item?.full_name);
-                                    setFirstName(item?.user_id?.first_name);
-                                    setLastName(item?.user_id?.last_name);
-                                    setEmail(item?.user_id?.email);
                                   }}
                                 >
                                   <svg
@@ -612,13 +644,12 @@ const Booking = () => {
                                   onClick={() => {
                                     setShowModal(true);
                                     setSelectedItem(item);
-                                    console.log("item", item?.branch_id);
                                     setSelectedBranch(item?.branch_id);
-                                    setSelectedStatus(item?.status);
+                                    setSelectedStatus(item?.status ? statusList.find(status => status.value === item.status) : '');
                                     setPhoneNo(item?.phone_no);
-                                    setName(item?.full_name);
-                                    setFirstName(item?.user_id?.first_name);
-                                    setLastName(item?.user_id?.last_name);
+                                    setCustomerName(item?.customer_id?.name);
+                                    setCarPlate(item?.car_plate);
+                                    setCode(item?.code);
                                   }}
                                 >
                                   <svg
@@ -672,7 +703,18 @@ const Booking = () => {
                 </div>
               </div>
 
-              <Pagination />
+              <Pagination 
+                current={currPage}
+                total={totalDocs}
+                totalPage={totalPages}
+                pagingCounter={pagingCounter}
+                limit={limit}
+                hasNextPage={hasNextPage}
+                hasPreviousPage={hasPrevPage}
+                prevPage={prevPage}
+                nextPage={nextPage}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
             </div>
           </div>
         </main>

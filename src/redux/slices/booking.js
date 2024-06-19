@@ -60,6 +60,11 @@ const slice = createSlice({
     deleteBookingSuccess(state, action) {
       state.isLoading = false;
     },
+
+    // UPDATE BOOKING
+    updateBookingSuccess(state, action) {
+      state.isLoading = false;
+    },
   },
 });
 
@@ -133,6 +138,30 @@ export function addBooking(data) {
         progress: undefined,
         theme: 'light',
       });
+    }
+  };
+}
+
+export function updateBooking(id, data) {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await axios.post(`/booking/update/${id}`, data);
+      console.log('response', response.data);
+      dispatch(slice.actions.updateStaffSuccess(response.data));
+
+      toast.success('Staff successfully updated', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
     }
   };
 }

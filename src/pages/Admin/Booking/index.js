@@ -26,6 +26,7 @@ const Booking = () => {
   const [phoneNo, setPhoneNo] = useState();
   const [carPlate, setCarPlate] = useState();
   const [code, setCode] = useState();
+  const [createdDate, setCreatedDate] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPoints, setTotalPoints] = useState(0);
   const [selectedCustomer, setSelectedCustomer] = useState({});
@@ -118,6 +119,10 @@ const Booking = () => {
         setCode(event.target.value);
         break;
 
+      case "created_date":
+        setCreatedDate(event.target.value);
+        break;
+
       default:
         break;
     }
@@ -149,7 +154,7 @@ const Booking = () => {
         status: selectedStatus?.value
       };
 
-      if (selectedItem) dispatch(updateBooking(selectedItem?.id, data));
+      if (selectedItem) dispatch(updateBooking(selectedItem?._id, data));
       else dispatch(addBooking(data));
     }
   };
@@ -379,6 +384,24 @@ const Booking = () => {
                           />
                         </div>
                       ) : null}
+
+                      {selectedItem ? (
+                        <div className="relative px-6 pb-6 flex-auto">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Created Date
+                          </label>
+                          <input
+                            type="date"
+                            name="created_date"
+                            id="created_date"
+                            disabled={true}
+                            className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm text-gray-700"
+                            placeholder="Enter Date"
+                            onChange={handleEventChange}
+                            value={createdDate}
+                          />
+                        </div>
+                      ) : null}
                       
                       {selectedItem ? (
                         <div className="relative px-6 pb-6 flex-auto">
@@ -552,7 +575,7 @@ const Booking = () => {
                             <button
                               className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
                               onClick={() =>
-                                submitBookingDeletion(selectedItem?.id)
+                                submitBookingDeletion(selectedItem?._id)
                               }
                             >
                               Delete
@@ -593,7 +616,7 @@ const Booking = () => {
                       <tbody className="bg-white">
                         {booking.docs ? (
                           booking.docs.map((item) => (
-                            <tr key={item.id}>
+                            <tr key={item._id}>
                               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div className="flex items-center">
                                   <div className="text-sm font-medium leading-5 text-gray-900">
@@ -615,6 +638,7 @@ const Booking = () => {
                                     setCustomerName(item?.customer_id?.name);
                                     setCarPlate(item?.car_plate);
                                     setCode(item?.code);
+                                    setCreatedDate(item?.createdAt)
                                     setViewMode(true);
                                   }}
                                 >
@@ -650,6 +674,7 @@ const Booking = () => {
                                     setCustomerName(item?.customer_id?.name);
                                     setCarPlate(item?.car_plate);
                                     setCode(item?.code);
+                                    setCreatedDate(item?.createdAt);
                                   }}
                                 >
                                   <svg

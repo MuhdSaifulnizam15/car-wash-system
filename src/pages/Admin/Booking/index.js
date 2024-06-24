@@ -14,6 +14,7 @@ import { getAllBranch } from "redux/slices/branch";
 import { statusList } from "constants/status-list";
 import { addBooking, deleteBooking, getAllBooking, updateBooking } from "redux/slices/booking";
 import { getCustomerByPhoneNo } from "redux/slices/customer";
+import dayjs from "dayjs";
 
 const Booking = () => {
   const [showModal, setShowModal] = useState(false);
@@ -638,7 +639,7 @@ const Booking = () => {
                                     setCustomerName(item?.customer_id?.name);
                                     setCarPlate(item?.car_plate);
                                     setCode(item?.code);
-                                    setCreatedDate(item?.createdAt)
+                                    setCreatedDate(dayjs(item?.createdAt).format('YYYY-MM-DD'))
                                     setViewMode(true);
                                   }}
                                 >
@@ -674,7 +675,7 @@ const Booking = () => {
                                     setCustomerName(item?.customer_id?.name);
                                     setCarPlate(item?.car_plate);
                                     setCode(item?.code);
-                                    setCreatedDate(item?.createdAt);
+                                    setCreatedDate(dayjs(item?.createdAt).format('YYYY-MM-DD'))
                                   }}
                                 >
                                   <svg

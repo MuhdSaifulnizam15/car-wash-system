@@ -21,6 +21,7 @@ import {
 } from 'redux/slices/transaction';
 import { getAllBranch } from 'redux/slices/branch';
 import { getStaffSalesStatictics } from 'redux/slices/staff';
+import { config } from 'constants/config';
 
 const options = [
   {
@@ -115,7 +116,6 @@ const Transaction = () => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    console.log('user', user);
     if (user && user?.role !== 'admin') {
       // disabled branch selection (allow only on the respective branch)
       setIsSelectedBranchDisabled(true);
@@ -126,8 +126,16 @@ const Transaction = () => {
   }, [user]);
 
   useEffect(async () => {
+    await dispatch(
+      getTotalSalesChart({
+        type: selectedType?.name,
+        branch: staff_info?.branch_id?.id,
+      })
+    );
+  }, []);
+
+  useEffect(async () => {
     if (staff_info) {
-      console.log('staff info', staff_info);
       setSelectedBranch(staff_info?.branch_id);
 
       await dispatch(
@@ -259,10 +267,10 @@ const Transaction = () => {
 
     var url =
       selectedYear?.year && selectedMonth?.month
-        ? `https://api.rolexbarbershop.com/api/v1/sales/report/month?date=${dayjs(
+        ? `${config.apiUrl}/sales/report/month?date=${dayjs(
             new Date(selectedYear?.year, selectedMonth?.id - 1, 1)
           ).format('YYYY-MM-DD')}`
-        : `https://api.rolexbarbershop.com/api/v1/sales/report/annual?date=${dayjs(
+        : `${config.apiUrl}/sales/report/annual?date=${dayjs(
             new Date(selectedYear?.year, 0, 1)
           ).format('YYYY-MM-DD')}`;
 

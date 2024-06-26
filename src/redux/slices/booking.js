@@ -9,6 +9,7 @@ import axios from 'utils/axios';
 
 const initialState = {
   isLoading: false,
+  requireReload: false,
   error: false,
   booking: [],
   currPage: 0,
@@ -40,6 +41,7 @@ const slice = createSlice({
     // GET SALES
     getBookingSuccess(state, action) {
       state.isLoading = false;
+      state.requireReload = false;
       state.booking = action.payload;
       state.currPage = action.payload?.page;
       state.totalDocs = action.payload?.totalDocs;
@@ -64,6 +66,7 @@ const slice = createSlice({
     // UPDATE BOOKING
     updateBookingSuccess(state, action) {
       state.isLoading = false;
+      state.requireReload = true;
     },
   },
 });
@@ -147,10 +150,10 @@ export function updateBooking(id, data) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post(`/booking/update/${id}`, data);
-      console.log('response', response.data);
-      dispatch(slice.actions.updateStaffSuccess(response.data));
+      // console.log('response', response.data);
+      dispatch(slice.actions.updateBookingSuccess(response.data));
 
-      toast.success('Staff successfully updated', {
+      toast.success('Booking successfully updated', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,

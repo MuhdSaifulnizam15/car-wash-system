@@ -38,6 +38,7 @@ const Booking = () => {
   const { 
     booking,
     isLoading,
+    requireReload,
     pagingCounter,
     currPage,
     totalDocs,
@@ -63,6 +64,10 @@ const Booking = () => {
       resetForm();
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    if(requireReload) dispatch(getAllBooking({}));
+  }, [requireReload]);
 
   useEffect(() => {
     dispatch(
@@ -155,7 +160,7 @@ const Booking = () => {
         status: selectedStatus?.value
       };
 
-      if (selectedItem) dispatch(updateBooking(selectedItem?._id, data));
+      if (selectedItem) dispatch(updateBooking(selectedItem?.id, data));
       else dispatch(addBooking(data));
     }
   };
@@ -576,7 +581,7 @@ const Booking = () => {
                             <button
                               className="w-full mt-2 p-2.5 flex-1 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
                               onClick={() =>
-                                submitBookingDeletion(selectedItem?._id)
+                                submitBookingDeletion(selectedItem?.id)
                               }
                             >
                               Delete
@@ -617,7 +622,7 @@ const Booking = () => {
                       <tbody className="bg-white">
                         {booking.docs ? (
                           booking.docs.map((item) => (
-                            <tr key={item._id}>
+                            <tr key={item.id}>
                               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div className="flex items-center">
                                   <div className="text-sm font-medium leading-5 text-gray-900">

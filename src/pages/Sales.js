@@ -103,20 +103,20 @@ const Sales = () => {
   }, [selectedBranch]);
 
   useEffect(() => {
-    // const newTotal = selectedService
-    //   .reduce((a, v) => (a = a + v.price * (v.quantity || 1)), 0)
-    //   .toFixed(2);
-    // setTotal(newTotal);
-    // const afterDiscount = newTotal - discount;
-    // setSubTotal(afterDiscount);
-    // setRewardedPoint(Math.ceil(afterDiscount));
-
-    const total = selectedService
+    const newTotal = selectedService
       .reduce((a, v) => (a = a + v.price * (v.quantity || 1)), 0)
       .toFixed(2);
-    setTotal(total);
-    setRewardedPoint(Math.ceil(total));
-  }, [selectedService]);
+    setTotal(newTotal);
+    const afterDiscount = newTotal - discount;
+    setSubTotal(afterDiscount > 0 ? afterDiscount : 0);
+    setRewardedPoint(Math.ceil(afterDiscount));
+
+    // const total = selectedService
+    //   .reduce((a, v) => (a = a + v.price * (v.quantity || 1)), 0)
+    //   .toFixed(2);
+    // setTotal(total);
+    // setRewardedPoint(Math.ceil(total));
+  }, [selectedService, discount]);
 
   useEffect(() => {
     if (totalPoints > 0) {
@@ -162,12 +162,15 @@ const Sales = () => {
     }
   }, [customer]);
 
-  // useEffect(() => {
-  //   setDiscount(redeemedPoint / 10);
-  //   const newSubTotal = total - redeemedPoint / 10;
-  //   setSubTotal(newSubTotal);
-  //   setRewardedPoint(newSubTotal);
-  // }, [redeemedPoint]);
+  useEffect(() => {
+    console.log('selectedFreebie', selectedFreebie);
+    if(selectedFreebie?.price) {
+      setDiscount(Number(selectedFreebie?.price));
+      const newSubTotal = total - Number(selectedFreebie?.price);
+      setSubTotal(newSubTotal > 0 ? newSubTotal : 0);
+      setRewardedPoint(newSubTotal);
+    }
+  }, [selectedFreebie]);
 
   const incrementQuantity = (service, index) => {
     console.log(
@@ -237,6 +240,7 @@ const Sales = () => {
         break;
 
       case 'redeem_point':
+        console.log('redeem_point', event.target.value);
         setRedeemedPoint(event.target.value);
         break;
 
@@ -265,7 +269,7 @@ const Sales = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    let _redeemedPoint = selectedFreebie ? selectedFreebie?.point : 0;
+    let _redeemedPoint = selectedFreebie ? (selectedFreebie?.price * 10) : 0;
 
     let data;
     if (customer) {
@@ -287,7 +291,7 @@ const Sales = () => {
               {
                 name: selectedFreebie?.name,
                 quantity: selectedFreebie?.quantity,
-                point: selectedFreebie?.point,
+                point: selectedFreebie?.price * 10,
               },
             ]
           : [],
@@ -968,7 +972,7 @@ const Sales = () => {
                                             </td>
                                             <td className='text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap'>
                                               {'- ' +
-                                                selectedFreebie.point +
+                                                (selectedFreebie.price * 10) +
                                                 ' pts'}
                                             </td>
                                             <td className='text-sm text-gray-900 font-light p-2 whitespace-nowrap'>
@@ -996,7 +1000,7 @@ const Sales = () => {
                                             </td>
                                           </tr>
 
-                                          {/* {showRedeemPointField && (
+                                          {showRedeemPointField && (
                                             <tr className="bg-white border-b">
                                               <td
                                                 colSpan="2"
@@ -1011,9 +1015,9 @@ const Sales = () => {
                                                     : 0.0)}
                                               </td>
                                             </tr>
-                                          )} */}
+                                          )}
 
-                                          {/* <tr className="bg-white border-b">
+                                          <tr className="bg-white border-b">
                                             <td
                                               colSpan="2"
                                               className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
@@ -1023,7 +1027,7 @@ const Sales = () => {
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                               {"RM " + subTotal.toFixed(2)}
                                             </td>
-                                          </tr> */}
+                                          </tr>
                                         </>
                                       )}
                                     </tbody>

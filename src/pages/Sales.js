@@ -269,8 +269,7 @@ const Sales = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    let _redeemedPoint = selectedFreebie ? (selectedFreebie?.price * 10) : 0;
-
+    let _redeemedPoint = selectedFreebie?.price ? (Number(selectedFreebie?.price) * 10) : 0;
     let data;
     if (customer) {
       data = {
@@ -291,7 +290,7 @@ const Sales = () => {
               {
                 name: selectedFreebie?.name,
                 quantity: selectedFreebie?.quantity,
-                point: selectedFreebie?.price * 10,
+                point: Number(selectedFreebie?.price) * 10,
               },
             ]
           : [],

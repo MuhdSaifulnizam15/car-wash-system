@@ -283,7 +283,7 @@ const Sales = () => {
         })),
         total: parseFloat(total).toFixed(2),
         total_redeemed_point: parseFloat(_redeemedPoint ?? 0).toFixed(2),
-        total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
+        total_rewarded_point: parseFloat(rewardedPoint ?? 0).toFixed(2),
         customer_code: customerCode,
         car_plate: plateNum,
         freebie: selectedFreebie?.name

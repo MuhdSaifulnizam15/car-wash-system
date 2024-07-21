@@ -308,7 +308,7 @@ const Sales = () => {
         total_rewarded_point: parseFloat(rewardedPoint).toFixed(2),
         customer_name: customerName,
         customer_code: customerCode,
-        plate_num: plateNum,
+        car_plate: plateNum,
         customer_phone_no: customerPhoneNumber,
       };
     }

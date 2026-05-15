@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "redux/store";
 
 import Footer from "components/Footer";
@@ -11,8 +11,8 @@ const Users = () => {
   const { userList } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(getUserList());
+  useEffect(() => {
+    dispatch(getUserList());
   }, [dispatch]);
 
   return (

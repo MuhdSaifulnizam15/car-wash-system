@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'redux/store';
-import { Listbox, Transition } from '@headlessui/react';
+import { Listbox } from '@headlessui/react';
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/react/20/solid';
 import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
@@ -58,9 +58,9 @@ const History = () => {
   const dispatch = useDispatch();
   const { user, staff } = useAuth();
 
-  useEffect(async () => {
+  useEffect(() => {
     if (user) {
-      await dispatch(
+      dispatch(
         getAllSales({
           userId: user?.role !== 'admin' ? user?.id : '',
           branchId: selectedBranch?.id
@@ -72,13 +72,13 @@ const History = () => {
           end_date: startDate,
         })
       );
-      await dispatch(getAllBranch({ limit: 50 }));
+      dispatch(getAllBranch({ limit: 50 }));
 
       if (user?.role !== 'admin') setIsSelectedBranchDisabled(true);
     }
   }, [dispatch, user]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (staff) {
       console.log('staff info', staff);
       if (user?.role !== 'admin') setSelectedBranch(staff?.branch_id);
@@ -95,9 +95,9 @@ const History = () => {
     }
   }, [isLoading]);
 
-  useEffect(async () => {
+  useEffect(() => {
     console.log('currentPage', currentPage);
-    await dispatch(
+    dispatch(
       getAllSales({
         page: currentPage,
         userId: user?.role !== 'admin' ? user?.id : '',
@@ -112,10 +112,10 @@ const History = () => {
     );
   }, [currentPage]);
 
-  useEffect(async () => {
+  useEffect(() => {
     setCurrentPage(1);
 
-    await dispatch(
+    dispatch(
       getAllSales({
         page: 1,
         userId: user?.role !== 'admin' ? user?.id : '',
@@ -622,19 +622,12 @@ const History = () => {
                             </span>
                           </Listbox.Button>
 
-                          <Transition
-                            show={open}
-                            as={Fragment}
-                            leave='transition ease-in duration-100'
-                            leaveFrom='opacity-100'
-                            leaveTo='opacity-0'
-                          >
-                            <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                          <Listbox.Options transition className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0'>
                               <Listbox.Option
                                 key={'all'}
-                                className={({ active }) =>
+                                className={({ focus }) =>
                                   classNames(
-                                    active
+                                    focus
                                       ? 'text-white bg-indigo-600'
                                       : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -642,7 +635,7 @@ const History = () => {
                                 }
                                 value={{ name: 'All Branch', id: 'all' }}
                               >
-                                {({ selected, active }) => (
+                                {({ selected, focus }) => (
                                   <>
                                     <div className='flex items-center'>
                                       <span
@@ -660,7 +653,7 @@ const History = () => {
                                     {selected ? (
                                       <span
                                         className={classNames(
-                                          active
+                                          focus
                                             ? 'text-white'
                                             : 'text-indigo-600',
                                           'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -679,9 +672,9 @@ const History = () => {
                                 branch.docs.map((item) => (
                                   <Listbox.Option
                                     key={item.id}
-                                    className={({ active }) =>
+                                    className={({ focus }) =>
                                       classNames(
-                                        active
+                                        focus
                                           ? 'text-white bg-indigo-600'
                                           : 'text-gray-900',
                                         'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -689,7 +682,7 @@ const History = () => {
                                     }
                                     value={item}
                                   >
-                                    {({ selected, active }) => (
+                                    {({ selected, focus }) => (
                                       <>
                                         <div className='flex items-center'>
                                           <span
@@ -707,7 +700,7 @@ const History = () => {
                                         {selected ? (
                                           <span
                                             className={classNames(
-                                              active
+                                              focus
                                                 ? 'text-white'
                                                 : 'text-indigo-600',
                                               'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -723,8 +716,7 @@ const History = () => {
                                     )}
                                   </Listbox.Option>
                                 ))}
-                            </Listbox.Options>
-                          </Transition>
+                          </Listbox.Options>
                         </div>
                       </>
                     )}

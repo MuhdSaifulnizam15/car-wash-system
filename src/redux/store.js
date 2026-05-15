@@ -1,5 +1,5 @@
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 
 import { rootPersistConfig, rootReducer } from 'redux/reducers/rootReducer';
@@ -8,7 +8,7 @@ import { rootPersistConfig, rootReducer } from 'redux/reducers/rootReducer';
 
 const store = configureStore({
     reducer: persistReducer(rootPersistConfig, rootReducer),
-    middleware: getDefaultMiddleware({
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
         immutableCheck: false
     })

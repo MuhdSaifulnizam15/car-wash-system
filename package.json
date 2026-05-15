@@ -2,67 +2,49 @@
   "name": "car_wash_app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
-    "@heroicons/react": "^2.0.13",
-    "@reduxjs/toolkit": "^1.7.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.24.0",
-    "chart.js": "^3.6.0",
-    "dayjs": "^1.11.7",
-    "jsonwebtoken": "^8.5.1",
-    "jwt-decode": "^3.1.2",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "@reduxjs/toolkit": "^2.6.1",
+    "axios": "^1.9.0",
+    "chart.js": "^4.4.9",
+    "dayjs": "^1.11.13",
+    "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
-    "postcss-import": "^12.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-calendar": "^4.0.0",
-    "react-chartjs-2": "^4.0.0",
-    "react-dom": "^17.0.2",
-    "react-hook-form": "^7.41.5",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.0.0-beta.4",
-    "react-scripts": "^4.0.1",
-    "react-toastify": "8.0.0",
-    "redux": "^4.1.2",
+    "prop-types": "^15.8.1",
+    "react": "^19.1.0",
+    "react-calendar": "^5.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.55.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.0",
+    "react-toastify": "^10.0.6",
+    "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
-    "web-vitals": "^2.1.0",
-    "yup": "^0.32.9"
+    "web-vitals": "^4.2.4",
+    "yup": "^1.6.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "concurrently \"yarn tailwind:css\" \"yarn start\"",
-    "tailwind:css": "postcss ./src/styles/tailwind.css -o ./src/styles/index.css --watch"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
-    "autoprefixer": "^10.4.13",
-    "concurrently": "^7.6.0",
-    "postcss": "^8.4.21",
-    "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.2.4"
+    "@faker-js/faker": "^9.7.0",
+    "@tailwindcss/vite": "^4.1.5",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.5",
+    "vite": "^6.3.3",
+    "vitest": "^3.1.3"
   }
 }

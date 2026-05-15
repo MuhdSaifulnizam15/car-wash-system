@@ -1,5 +1,5 @@
-import { Fragment, useState, useEffect } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
+import { useState, useEffect } from 'react';
+import { Listbox } from '@headlessui/react';
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/react/20/solid';
 
 import axios from 'utils/axios';
@@ -71,13 +71,13 @@ const Sales = () => {
     }
   }, [user]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (staff_info) {
       console.log('staff info', staff_info);
       if (user?.role === 'staff') setSelectedStaff(staff_info);
       setSelectedBranch(staff_info?.branch_id);
     }
-    await dispatch(
+    dispatch(
       getAllStaff({ 
         limit: 50, 
         // branch: staff_info?.branch_id?.id 
@@ -85,7 +85,7 @@ const Sales = () => {
     );
   }, [staff_info]);
 
-  useEffect(async () => {
+  useEffect(() => {
     // if (
     //   selectedBranch &&
     //   selectedBranch.hasOwnProperty('name') &&
@@ -93,7 +93,7 @@ const Sales = () => {
     // ) {
       setIsSelectedStaffDisabled(false);
       setSelectedStaff({});
-      await dispatch(getAllStaff({ 
+      dispatch(getAllStaff({ 
         limit: 50, 
         // branch: selectedBranch?.id 
       }));
@@ -143,9 +143,9 @@ const Sales = () => {
     }
   }, [customerPhoneNumber]);
 
-  useEffect(async () => {
-    await dispatch(getAllBranch({ limit: 50 }));
-    await dispatch(getAllServices({ limit: 50 }));
+  useEffect(() => {
+    dispatch(getAllBranch({ limit: 50 }));
+    dispatch(getAllServices({ limit: 50 }));
   }, [dispatch]);
 
   useEffect(() => {
@@ -369,21 +369,14 @@ const Sales = () => {
                                     </span>
                                   </Listbox.Button>
 
-                                  <Transition
-                                    show={open}
-                                    as={Fragment}
-                                    leave='transition ease-in duration-100'
-                                    leaveFrom='opacity-100'
-                                    leaveTo='opacity-0'
-                                  >
-                                    <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                                    <Listbox.Options transition className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0'>
                                       {branch.docs &&
                                         branch.docs.map((item) => (
                                           <Listbox.Option
                                             key={item.id}
-                                            className={({ active }) =>
+                                            className={({ focus }) =>
                                               classNames(
-                                                active
+                                                focus
                                                   ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -391,7 +384,7 @@ const Sales = () => {
                                             }
                                             value={item}
                                           >
-                                            {({ selected, active }) => (
+                                            {({ selected, focus }) => (
                                               <>
                                                 <div className='flex items-center'>
                                                   <span
@@ -409,7 +402,7 @@ const Sales = () => {
                                                 {selected ? (
                                                   <span
                                                     className={classNames(
-                                                      active
+                                                      focus
                                                         ? 'text-white'
                                                         : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -426,7 +419,6 @@ const Sales = () => {
                                           </Listbox.Option>
                                         ))}
                                     </Listbox.Options>
-                                  </Transition>
                                 </div>
                               </>
                             )}
@@ -484,21 +476,14 @@ const Sales = () => {
                                     </span>
                                   </Listbox.Button>
 
-                                  <Transition
-                                    show={open}
-                                    as={Fragment}
-                                    leave='transition ease-in duration-100'
-                                    leaveFrom='opacity-100'
-                                    leaveTo='opacity-0'
-                                  >
-                                    <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                                    <Listbox.Options transition className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0'>
                                       {staff.docs &&
                                         staff.docs.map((person) => (
                                           <Listbox.Option
                                             key={person.id}
-                                            className={({ active }) =>
+                                            className={({ focus }) =>
                                               classNames(
-                                                active
+                                                focus
                                                   ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -506,7 +491,7 @@ const Sales = () => {
                                             }
                                             value={person}
                                           >
-                                            {({ selected, active }) => (
+                                            {({ selected, focus }) => (
                                               <>
                                                 <div className='flex items-center'>
                                                   {/* <img
@@ -529,7 +514,7 @@ const Sales = () => {
                                                 {selected ? (
                                                   <span
                                                     className={classNames(
-                                                      active
+                                                      focus
                                                         ? 'text-white'
                                                         : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -546,7 +531,6 @@ const Sales = () => {
                                           </Listbox.Option>
                                         ))}
                                     </Listbox.Options>
-                                  </Transition>
                                 </div>
                               </>
                             )}
@@ -579,21 +563,14 @@ const Sales = () => {
                                     </span>
                                   </Listbox.Button>
 
-                                  <Transition
-                                    show={open}
-                                    as={Fragment}
-                                    leave='transition ease-in duration-100'
-                                    leaveFrom='opacity-100'
-                                    leaveTo='opacity-0'
-                                  >
-                                    <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                                    <Listbox.Options transition className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0'>
                                       {services.docs &&
                                         services.docs.map((service) => (
                                           <Listbox.Option
                                             key={service.id}
-                                            className={({ active }) =>
+                                            className={({ focus }) =>
                                               classNames(
-                                                active
+                                                focus
                                                   ? 'text-white bg-indigo-600'
                                                   : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -601,7 +578,7 @@ const Sales = () => {
                                             }
                                             value={service}
                                           >
-                                            {({ selected, active }) => (
+                                            {({ selected, focus }) => (
                                               <>
                                                 <div className='flex items-center'>
                                                   <span
@@ -628,7 +605,7 @@ const Sales = () => {
                                                 ) ? (
                                                   <span
                                                     className={classNames(
-                                                      active
+                                                      focus
                                                         ? 'text-white'
                                                         : 'text-indigo-600',
                                                       'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -645,7 +622,6 @@ const Sales = () => {
                                           </Listbox.Option>
                                         ))}
                                     </Listbox.Options>
-                                  </Transition>
                                 </div>
                               </>
                             )}
@@ -764,21 +740,14 @@ const Sales = () => {
                                       </span>
                                     </Listbox.Button>
 
-                                    <Transition
-                                      show={open}
-                                      as={Fragment}
-                                      leave='transition ease-in duration-100'
-                                      leaveFrom='opacity-100'
-                                      leaveTo='opacity-0'
-                                    >
-                                      <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                                      <Listbox.Options transition className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0'>
                                         {services.docs &&
                                           services.docs.map((freebie) => (
                                             <Listbox.Option
                                               key={freebie.id}
-                                              className={({ active }) =>
+                                              className={({ focus }) =>
                                                 classNames(
-                                                  active
+                                                  focus
                                                     ? 'text-white bg-indigo-600'
                                                     : 'text-gray-900',
                                                   'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -789,7 +758,7 @@ const Sales = () => {
                                                 (freebie.price * 10) > totalPoints
                                               }
                                             >
-                                              {({ selected, active }) => (
+                                              {({ selected, focus }) => (
                                                 <>
                                                   <div
                                                     className={classNames(
@@ -825,7 +794,7 @@ const Sales = () => {
                                                   {selected ? (
                                                     <span
                                                       className={classNames(
-                                                        active
+                                                        focus
                                                           ? 'text-white'
                                                           : 'text-indigo-600',
                                                         'absolute inset-y-0 right-0 flex items-center pr-4'
@@ -842,7 +811,6 @@ const Sales = () => {
                                             </Listbox.Option>
                                           ))}
                                       </Listbox.Options>
-                                    </Transition>
                                   </div>
                                   <div className='relative mt-1'>
                                     <p className='text-xs italic font-light text-gray-500'>

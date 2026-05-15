@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "redux/store";
-import { Listbox, Transition } from "@headlessui/react";
+import { Listbox } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
 
 import Footer from "components/Footer";
@@ -34,12 +34,12 @@ const Staff = () => {
   const { branch } = useSelector((state) => state.branch);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(getAllBranch({}));
+  useEffect(() => {
+    dispatch(getAllBranch({}));
   }, []);
 
-  useEffect(async () => {
-    await dispatch(getAllStaff({}));
+  useEffect(() => {
+    dispatch(getAllStaff({}));
   }, [dispatch]);
 
   useEffect(() => {
@@ -299,21 +299,14 @@ const Staff = () => {
                                   </span>
                                 </Listbox.Button>
 
-                                <Transition
-                                  show={open}
-                                  as={Fragment}
-                                  leave="transition ease-in duration-100"
-                                  leaveFrom="opacity-100"
-                                  leaveTo="opacity-0"
-                                >
-                                  <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                  <Listbox.Options transition className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition ease-in duration-100 data-[closed]:opacity-0">
                                     {branch.docs &&
                                       branch.docs.map((item) => (
                                         <Listbox.Option
                                           key={item.id}
-                                          className={({ active }) =>
+                                          className={({ focus }) =>
                                             classNames(
-                                              active
+                                              focus
                                                 ? "text-white bg-indigo-600"
                                                 : "text-gray-900",
                                               "relative cursor-default select-none py-2 pl-3 pr-9"
@@ -321,7 +314,7 @@ const Staff = () => {
                                           }
                                           value={item}
                                         >
-                                          {({ selected, active }) => (
+                                          {({ selected, focus }) => (
                                             <>
                                               <div className="flex items-center">
                                                 <span
@@ -339,7 +332,7 @@ const Staff = () => {
                                               {selected ? (
                                                 <span
                                                   className={classNames(
-                                                    active
+                                                    focus
                                                       ? "text-white"
                                                       : "text-indigo-600",
                                                     "absolute inset-y-0 right-0 flex items-center pr-4"
@@ -356,7 +349,6 @@ const Staff = () => {
                                         </Listbox.Option>
                                       ))}
                                   </Listbox.Options>
-                                </Transition>
                               </div>
                             </>
                           )}

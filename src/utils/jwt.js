@@ -1,5 +1,4 @@
-import jwtDecode from 'jwt-decode';
-import { verify, sign } from 'jsonwebtoken';
+import { jwtDecode } from 'jwt-decode';
 import { toast } from 'react-toastify';
 
 //
@@ -104,4 +103,4 @@ const setSession = (tokens) => {
   }
 };
 
-export { isValidToken, verifyResetToken, setSession, verify, sign };
+export { isValidToken, verifyResetToken, setSession };

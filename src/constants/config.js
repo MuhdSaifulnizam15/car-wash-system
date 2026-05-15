@@ -1,6 +1,6 @@
 // IMPORTANT:
 // Change this mode depends on environment
-const mode = 'local'; // dev | prod | local
+const mode = 'prod'; // dev | prod | local
 
 const configuration = {
     local: {
